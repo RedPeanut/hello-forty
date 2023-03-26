@@ -63,13 +63,13 @@ FortyApp::~FortyApp() {
 bool FortyApp::OnInit() {
     bool largecards = false;
     m_helpFile = wxGetCwd() + wxFILE_SEP_PATH + wxT("about.htm");
-    if (!wxFileExists(m_helpFile)) {
+    if(!wxFileExists(m_helpFile)) {
         m_helpFile = wxPathOnly(argv[0]) + wxFILE_SEP_PATH + wxT("about.htm");
     }
 
     wxSize size(668,510);
 
-    if ((argc > 1) && (!wxStrcmp(argv[1],wxT("-L")))) {
+    if((argc > 1) && (!wxStrcmp(argv[1],wxT("-L")))) {
         largecards = true;
         size = wxSize(1000,750);
     }
@@ -91,7 +91,7 @@ bool FortyApp::OnInit() {
 }
 
 const wxColour& FortyApp::BackgroundColour() {
-    if (!m_backgroundColour) {
+    if(!m_backgroundColour) {
         m_backgroundColour = new wxColour(0, 128, 0);
     }
 
@@ -99,7 +99,7 @@ const wxColour& FortyApp::BackgroundColour() {
 }
 
 const wxBrush& FortyApp::BackgroundBrush() {
-    if (!m_backgroundBrush) {
+    if(!m_backgroundBrush) {
         m_backgroundBrush = new wxBrush(BackgroundColour());
     }
 
@@ -107,7 +107,7 @@ const wxBrush& FortyApp::BackgroundBrush() {
 }
 
 const wxColour& FortyApp::TextColour() {
-    if (!m_textColour) {
+    if(!m_textColour) {
         m_textColour = new wxColour(*wxBLACK);
     }
 
@@ -169,7 +169,7 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
 
     SetMenuBar(m_menuBar);
 
-    if (largecards)
+    if(largecards)
         Card::SetScale(1.3);
 
     m_canvas = new FortyCanvas(this, wxDefaultPosition, size);
@@ -186,7 +186,7 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
 }
 
 void FortyFrame::OnCloseWindow(wxCloseEvent& event) {
-    if (m_canvas->OnCloseCanvas()) {
+    if(m_canvas->OnCloseCanvas()) {
         this->Destroy();
     }
     else
@@ -203,9 +203,9 @@ void FortyFrame::Exit(wxCommandEvent&) {
 
 void FortyFrame::Help(wxCommandEvent& event) {
 #if wxUSE_HTML
-    if (wxFileExists(wxGetApp().GetHelpFile())) {
+    if(wxFileExists(wxGetApp().GetHelpFile())) {
         FortyAboutDialog dialog(this, wxID_ANY, wxT("Forty Thieves Instructions"));
-        if (dialog.ShowModal() == wxID_OK) {
+        if(dialog.ShowModal() == wxID_OK) {
         }
     }
     else
@@ -277,15 +277,15 @@ bool FortyAboutDialog::AddControls(wxWindow* parent) {
 
     {
         wxTextFile file(htmlFile);
-        if (file.Exists()) {
+        if(file.Exists()) {
             file.Open();
-            for (htmlText = file.GetFirstLine();
+            for(htmlText = file.GetFirstLine();
                   !file.Eof();
                   htmlText << file.GetNextLine() << wxT("\n")) ;
         }
     }
 
-    if (htmlText.empty()) {
+    if(htmlText.empty()) {
         htmlText.Printf(wxT("<html><head><title>Warning</title></head><body><P>Sorry, could not find resource for About dialog<P></body></html>"));
     }
 

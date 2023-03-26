@@ -51,20 +51,20 @@ int Card::m_height = 70;
 //+-------------------------------------------------------------+
 Card::Card(int value, WayUp way_up) :
       m_wayUp(way_up) {
-    if (!m_symbolBmap) {
+    if(!m_symbolBmap) {
         m_symbolBmap = new wxBitmap(symbols_xpm);
-        if (!m_symbolBmap->IsOk()) {
+        if(!m_symbolBmap->IsOk()) {
             ::wxMessageBox(wxT("Failed to load bitmap CardSymbols"), wxT("Error"));
         }
     }
-    if (!m_pictureBmap) {
+    if(!m_pictureBmap) {
         m_pictureBmap = new wxBitmap(Pictures);
-        if (!m_pictureBmap->IsOk()) {
+        if(!m_pictureBmap->IsOk()) {
             ::wxMessageBox(wxT("Failed to load bitmap CardPictures"), wxT("Error"));
         }
     }
 
-    if (value >= 1 && value <= PackSize) {
+    if(value >= 1 && value <= PackSize) {
         switch ((value - 1) / 13) {
             case 0:
                 m_suit = clubs;
@@ -146,7 +146,7 @@ void Card::Draw(wxDC& dc, int x, int y) {
     dc.SetBrush(* wxWHITE_BRUSH);
     dc.SetPen(* wxBLACK_PEN);
         dc.DrawRoundedRectangle(x, y, m_width, m_height, 4);
-    if (m_wayUp == facedown) {
+    if(m_wayUp == facedown) {
         dc.SetBackground(* wxRED_BRUSH);
         dc.SetBackgroundMode(wxBRUSHSTYLE_SOLID);
         wxBrush* brush = wxTheBrushList->FindOrCreateBrush(
@@ -186,7 +186,7 @@ void Card::Draw(wxDC& dc, int x, int y) {
 
         int pipsize,pippos,valueheight,valuewidth;
         int valuepos;
-        if (m_scale > 1.2) {
+        if(m_scale > 1.2) {
             pipsize = symsize;
             pippos = sympos;
             valueheight = 10;

@@ -35,11 +35,11 @@ void ScoreFile::GetPlayerList(wxArrayString &list) {
     m_config->SetPath(wxT("/Players"));
     int length = m_config->GetNumberOfGroups();
 
-    if (length <= 0) return;
+    if(length <= 0) return;
 
     wxString player;
     long index;
-    if (m_config->GetFirstGroup(player, index)) {
+    if(m_config->GetFirstGroup(player, index)) {
          list.Add(player);
         while (m_config->GetNextGroup(player, index)) {
               list.Add(player);
@@ -87,11 +87,11 @@ void ScoreFile::ReadPlayersScore(
 
     m_config->SetPath(wxT("/Players"));
     m_config->SetPath(player);
-    if (m_config->Read(wxT("Score"), &myScore, 0L) &&
+    if(m_config->Read(wxT("Score"), &myScore, 0L) &&
         m_config->Read(wxT("Games"), &myGames, 0L) &&
         m_config->Read(wxT("Wins"),  &myWins, 0L) &&
         m_config->Read(wxT("Check"), &check, 0L)) {
-        if (check != CalcCheck(player, myGames, myWins, myScore)) {
+        if(check != CalcCheck(player, myGames, myWins, myScore)) {
             wxMessageBox(wxT("Score file corrupted"), wxT("Warning"),
                                      wxOK | wxICON_EXCLAMATION);
         } else {
@@ -105,7 +105,7 @@ void ScoreFile::ReadPlayersScore(
 
 
 void ScoreFile::WritePlayersScore(const wxString& player, int wins, int games, int score) {
-    if (!player.empty()) {
+    if(!player.empty()) {
         m_config->SetPath(wxT("/General"));
         m_config->Write(wxT("LastPlayer"), wxString(player)); // Without wxString tmp, thinks it's bool in VC++
 

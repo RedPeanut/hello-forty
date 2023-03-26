@@ -45,7 +45,7 @@ PlayerSelectionDialog::PlayerSelectionDialog(
 
     wxArrayString players;
     m_scoreFile->GetPlayerList(players);
-    for (unsigned int i = 0; i < players.Count(); i++) {
+    for(unsigned int i = 0; i < players.Count(); i++) {
         list->Append(players[i]);
     }
 
@@ -91,17 +91,17 @@ void PlayerSelectionDialog::OnCloseWindow(wxCloseEvent& WXUNUSED(event)) {
 }
 
 void PlayerSelectionDialog::SelectCallback(wxCommandEvent& event) {
-    if (event.GetEventType() == wxEVT_LISTBOX) {
-//        if (event.IsSelection())
+    if(event.GetEventType() == wxEVT_LISTBOX) {
+//        if(event.IsSelection())
         m_textField->SetValue(event.GetString());
     }
 }
 
 void PlayerSelectionDialog::ButtonCallback(wxCommandEvent& event) {
-    if (event.GetId() == wxID_OK) {
+    if(event.GetId() == wxID_OK) {
         wxString name = m_textField->GetValue();
-        if (!name.empty()) {
-            if (name.Contains(wxT('@'))) {
+        if(!name.empty()) {
+            if(name.Contains(wxT('@'))) {
                 wxMessageBox(wxT("Names should not contain the '@' character"), wxT("Forty Thieves"));
             } else {
                 m_player = name;

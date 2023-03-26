@@ -53,11 +53,11 @@ ScoreCanvas::ScoreCanvas(wxWindow* parent, ScoreFile* scoreFile, const wxPoint& 
     wxString os;
 
     os << wxT("Player\tWins\tGames\tScore\n");
-    for (unsigned int i = 0; i < players.Count(); i++) {
+    for(unsigned int i = 0; i < players.Count(); i++) {
         int wins, games, score;
         scoreFile->ReadPlayersScore(players[i], wins, games, score);
         int average = 0;
-        if (games > 0) {
+        if(games > 0) {
             average = (2 * score + games) / (2 * games);
         }
 
@@ -98,16 +98,16 @@ void ScoreCanvas::OnDraw(wxDC& dc) {
 
         dc.DrawText(text, FromDIP(tabstops[tab]), y);
 
-        if (*str == '\t') {
-            if (tab < sizeof(tabstops) / sizeof(tabstops[0]) - 1) {
+        if(*str == '\t') {
+            if(tab < sizeof(tabstops) / sizeof(tabstops[0]) - 1) {
                 tab++;
             }
         }
-        else if (*str == '\n') {
+        else if(*str == '\n') {
             tab = 0;
             y += lineSpacing;
         }
-        if (*str) str++;
+        if(*str) str++;
     }
 }
 #endif
@@ -128,13 +128,13 @@ ScoreDialog::ScoreDialog(wxWindow* parent, ScoreFile* file) :
 #if USE_GRID_FOR_SCORE
     wxGrid* list = new wxGrid(this, wxID_ANY, wxDefaultPosition, sz, 0);
     list->CreateGrid(players.Count(), 4);
-    for (unsigned int i = 0; i < players.Count(); i++) {
+    for(unsigned int i = 0; i < players.Count(); i++) {
         int wins, games, score;
         wxString string_value;
 
         file->ReadPlayersScore(players[i], wins, games, score);
         int average = 0;
-        if (games > 0) {
+        if(games > 0) {
             average = (2 * score + games) / (2 * games);
         }
         list->SetCellValue(i,0,players[i]);

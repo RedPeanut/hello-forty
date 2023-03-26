@@ -47,7 +47,7 @@ FortyCanvas::FortyCanvas(wxWindow* parent, const wxPoint& pos, const wxSize& siz
     m_arrowCursor = new wxCursor(wxCURSOR_ARROW);
 
     wxString name = wxTheApp->GetAppName();
-    if (name.empty()) name = wxT("forty");
+    if(name.empty()) name = wxT("forty");
     m_scoreFile = new ScoreFile(name);
     m_game = new Game(0, 0, 0);
     m_game->Deal();
@@ -67,7 +67,7 @@ FortyCanvas::~FortyCanvas() {
 Write the current player's score back to the score file
 */
 void FortyCanvas::UpdateScores() {
-    if (!m_player.empty() && m_scoreFile && m_game) {
+    if(!m_player.empty() && m_scoreFile && m_game) {
         m_scoreFile->WritePlayersScore(
             m_player,
             m_game->GetNumWins(),
@@ -84,11 +84,11 @@ void FortyCanvas::OnDraw(wxDC& dc) {
 #if 0
     // if player name not set (and selection dialog is not displayed)
     // then ask the player for their name
-    if (m_player.empty() && !m_playerDialog) {
+    if(m_player.empty() && !m_playerDialog) {
         m_playerDialog = new PlayerSelectionDialog(this, m_scoreFile);
         m_playerDialog->ShowModal();
         m_player = m_playerDialog->GetPlayersName();
-        if (!m_player.empty()) {
+        if(!m_player.empty()) {
             // user entered a name - lookup their score
             int wins, games, score;
             m_scoreFile->ReadPlayersScore(m_player, wins, games, score);
@@ -108,11 +108,11 @@ void FortyCanvas::OnDraw(wxDC& dc) {
 void FortyCanvas::ShowPlayerDialog() {
     // if player name not set (and selection dialog is not displayed)
     // then ask the player for their name
-    if (m_player.empty() && !m_playerDialog) {
+    if(m_player.empty() && !m_playerDialog) {
         m_playerDialog = new PlayerSelectionDialog(this, m_scoreFile);
         m_playerDialog->ShowModal();
         m_player = m_playerDialog->GetPlayersName();
-        if (!m_player.empty()) {
+        if(!m_player.empty()) {
             // user entered a name - lookup their score
             int wins, games, score;
             m_scoreFile->ReadPlayersScore(m_player, wins, games, score);
@@ -135,7 +135,7 @@ void FortyCanvas::ShowPlayerDialog() {
 Called when the main frame is closed
 */
 bool FortyCanvas::OnCloseCanvas() {
-    if (m_game->InPlay() &&
+    if(m_game->InPlay() &&
         wxMessageBox(wxT("Are you sure you want to\nabandon the current game?"),
             wxT("Warning"), wxYES_NO | wxICON_QUESTION) == wxNO) {
         return false;
@@ -151,43 +151,43 @@ void FortyCanvas::OnMouseEvent(wxMouseEvent& event) {
     PrepareDC(dc);
     dc.SetFont(* m_font);
 
-    if (event.LeftDClick()) {
-        if (m_leftBtnDown) {
+    if(event.LeftDClick()) {
+        if(m_leftBtnDown) {
             m_leftBtnDown = false;
             ReleaseMouse();
             m_game->LButtonUp(dc, mouseX, mouseY);
         }
         m_game->LButtonDblClk(dc, mouseX, mouseY);
     }
-    else if (event.LeftDown()) {
-        if (!m_leftBtnDown) {
+    else if(event.LeftDown()) {
+        if(!m_leftBtnDown) {
             m_leftBtnDown = true;
             CaptureMouse();
             m_game->LButtonDown(dc, mouseX, mouseY);
         }
     }
-    else if (event.LeftUp()) {
-        if (m_leftBtnDown) {
+    else if(event.LeftUp()) {
+        if(m_leftBtnDown) {
             m_leftBtnDown = false;
             ReleaseMouse();
             m_game->LButtonUp(dc, mouseX, mouseY);
         }
     }
-    else if (event.RightDown() && !event.LeftIsDown()) {
+    else if(event.RightDown() && !event.LeftIsDown()) {
         // only allow right button undo if m_rightBtnUndo is true
-        if (m_rightBtnUndo) {
-            if (event.ControlDown() || event.ShiftDown()) {
+        if(m_rightBtnUndo) {
+            if(event.ControlDown() || event.ShiftDown()) {
                 m_game->Redo(dc);
             } else {
                 m_game->Undo(dc);
             }
         }
     }
-    else if (event.Dragging()) {
+    else if(event.Dragging()) {
         m_game->MouseMove(dc, mouseX, mouseY);
     }
 
-    if (!event.LeftIsDown()) {
+    if(!event.LeftIsDown()) {
         SetCursorStyle(mouseX, mouseY);
     }
 }
@@ -195,7 +195,7 @@ void FortyCanvas::OnMouseEvent(wxMouseEvent& event) {
 void FortyCanvas::SetCursorStyle(int x, int y) {
     // Only set cursor to a hand if 'helping hand' is enabled and
     // the card under the cursor can go somewhere
-    if (m_game->CanYouGo(x, y) && m_helpingHand) {
+    if(m_game->CanYouGo(x, y) && m_helpingHand) {
         SetCursor(* m_handCursor);
     } else {
         SetCursor(* m_arrowCursor);
