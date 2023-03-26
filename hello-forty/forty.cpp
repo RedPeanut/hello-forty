@@ -193,18 +193,15 @@ void FortyFrame::OnCloseWindow(wxCloseEvent& event) {
         event.Veto();
 }
 
-void
-FortyFrame::NewGame(wxCommandEvent&) {
+void FortyFrame::NewGame(wxCommandEvent&) {
     m_canvas->NewGame();
 }
 
-void
-FortyFrame::Exit(wxCommandEvent&) {
+void FortyFrame::Exit(wxCommandEvent&) {
     Close(true);
 }
 
-void
-FortyFrame::Help(wxCommandEvent& event) {
+void FortyFrame::Help(wxCommandEvent& event) {
 #if wxUSE_HTML
     if (wxFileExists(wxGetApp().GetHelpFile())) {
         FortyAboutDialog dialog(this, wxID_ANY, wxT("Forty Thieves Instructions"));
@@ -218,8 +215,7 @@ FortyFrame::Help(wxCommandEvent& event) {
     }
 }
 
-void
-FortyFrame::About(wxCommandEvent&) {
+void FortyFrame::About(wxCommandEvent&) {
         wxMessageBox(
             wxT("Forty Thieves\n\n")
             wxT("A free card game written with the wxWidgets toolkit\n")
@@ -231,37 +227,31 @@ FortyFrame::About(wxCommandEvent&) {
 }
 
 
-void
-FortyFrame::Undo(wxCommandEvent&) {
+void FortyFrame::Undo(wxCommandEvent&) {
     m_canvas->Undo();
 }
 
-void
-FortyFrame::Redo(wxCommandEvent&) {
+void FortyFrame::Redo(wxCommandEvent&) {
     m_canvas->Redo();
 }
 
-void
-FortyFrame::Scores(wxCommandEvent&) {
+void FortyFrame::Scores(wxCommandEvent&) {
     m_canvas->UpdateScores();
     ScoreDialog scores(this, m_canvas->GetScoreFile());
     scores.Display();
 }
 
-void
-FortyFrame::ToggleRightButtonUndo(wxCommandEvent& event) {
+void FortyFrame::ToggleRightButtonUndo(wxCommandEvent& event) {
     bool checked = m_menuBar->IsChecked(event.GetId());
     m_canvas->EnableRightButtonUndo(checked);
 }
 
-void
-FortyFrame::ToggleHelpingHand(wxCommandEvent& event) {
+void FortyFrame::ToggleHelpingHand(wxCommandEvent& event) {
     bool checked = m_menuBar->IsChecked(event.GetId());
     m_canvas->EnableHelpingHand(checked);
 }
 
-void
-FortyFrame::ToggleCardSize(wxCommandEvent& event) {
+void FortyFrame::ToggleCardSize(wxCommandEvent& event) {
         bool checked = m_menuBar->IsChecked(event.GetId());
         Card::SetScale(checked ? 1.3 : 1);
         m_canvas->LayoutGame();
