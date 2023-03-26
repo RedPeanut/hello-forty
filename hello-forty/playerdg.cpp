@@ -33,8 +33,7 @@ PlayerSelectionDialog::PlayerSelectionDialog(
                             ScoreFile* file
                             ) :
     wxDialog(parent, wxID_ANY, wxT("Player Selection"), wxDefaultPosition),
-    m_scoreFile(file)
-{
+    m_scoreFile(file) {
     wxStaticText* msg = new wxStaticText(this, wxID_ANY, wxT("Please select a name or type a new one:"));
 
     wxListBox* list = new wxListBox(
@@ -46,8 +45,7 @@ PlayerSelectionDialog::PlayerSelectionDialog(
 
     wxArrayString players;
     m_scoreFile->GetPlayerList(players);
-    for (unsigned int i = 0; i < players.Count(); i++)
-    {
+    for (unsigned int i = 0; i < players.Count(); i++) {
         list->Append(players[i]);
     }
 
@@ -75,13 +73,11 @@ PlayerSelectionDialog::PlayerSelectionDialog(
     m_OK->SetDefault();
 }
 
-void PlayerSelectionDialog::OnSize(wxSizeEvent& WXUNUSED(event))
-{
+void PlayerSelectionDialog::OnSize(wxSizeEvent& WXUNUSED(event)) {
     Layout();
 }
 
-const wxString& PlayerSelectionDialog::GetPlayersName()
-{
+const wxString& PlayerSelectionDialog::GetPlayersName() {
 /*
     m_player = wxEmptyString;
     Show(true);
@@ -89,30 +85,23 @@ const wxString& PlayerSelectionDialog::GetPlayersName()
     return m_player;
 }
 
-void PlayerSelectionDialog::OnCloseWindow(wxCloseEvent& WXUNUSED(event))
-{
+void PlayerSelectionDialog::OnCloseWindow(wxCloseEvent& WXUNUSED(event)) {
     m_player = wxEmptyString;
     EndModal(wxID_CANCEL);
 }
 
-void PlayerSelectionDialog::SelectCallback(wxCommandEvent& event)
-{
-    if (event.GetEventType() == wxEVT_LISTBOX)
-    {
+void PlayerSelectionDialog::SelectCallback(wxCommandEvent& event) {
+    if (event.GetEventType() == wxEVT_LISTBOX) {
 //        if (event.IsSelection())
         m_textField->SetValue(event.GetString());
     }
 }
 
-void PlayerSelectionDialog::ButtonCallback(wxCommandEvent& event)
-{
-    if (event.GetId() == wxID_OK)
-    {
+void PlayerSelectionDialog::ButtonCallback(wxCommandEvent& event) {
+    if (event.GetId() == wxID_OK) {
         wxString name = m_textField->GetValue();
-        if ( !name.empty() )
-        {
-            if (name.Contains(wxT('@')))
-            {
+        if ( !name.empty() ) {
+            if (name.Contains(wxT('@'))) {
                 wxMessageBox(wxT("Names should not contain the '@' character"), wxT("Forty Thieves"));
             }
             else

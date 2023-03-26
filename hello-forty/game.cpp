@@ -29,8 +29,7 @@ Game::Game(int wins, int games, int score) :
     m_moveIndex(0),
     m_redoIndex(0),
     m_bmap(0),
-    m_bmapCard(0)
-{
+    m_bmapCard(0) {
     int i;
 
     m_pack = new Pack(2, 2 + 4 * (CardHeight + 2));
@@ -40,14 +39,12 @@ Game::Game(int wins, int games, int score) :
 
     m_discard = new Discard(2, 2 + 5 * (CardHeight + 2));
 
-    for (i = 0; i < 8; i++)
-    {
+    for (i = 0; i < 8; i++) {
         m_foundations[i] = new Foundation(2 + (i / 4) * (CardWidth + 2),
                     2 + (i % 4) * (CardHeight + 2));
     }
 
-    for (i = 0; i < 10; i++)
-    {
+    for (i = 0; i < 10; i++) {
         m_bases[i] = new Base(8 + (i + 2) * (CardWidth + 2), 2);
     }
     Deal();
@@ -62,22 +59,19 @@ Game::Game(int wins, int games, int score) :
 }
 
 
-void Game::Layout()
-{
+void Game::Layout() {
     int i;
 
     m_pack->SetPos(2, 2 + 4 * (CardHeight + 2));
 
     m_discard->SetPos(2, 2 + 5 * (CardHeight + 2));
 
-    for (i = 0; i < 8; i++)
-    {
+    for (i = 0; i < 8; i++) {
                 m_foundations[i]->SetPos(2 + (i / 4) * (CardWidth + 2),
                                          2 + (i % 4) * (CardHeight + 2));
     }
 
-    for (i = 0; i < 10; i++)
-    {
+    for (i = 0; i < 10; i++) {
         m_bases[i]->SetPos(8 + (i + 2) * (CardWidth + 2), 2);
     }
     delete m_bmap;
@@ -87,18 +81,15 @@ void Game::Layout()
 }
 
 // Make sure we delete all objects created by the game object
-Game::~Game()
-{
+Game::~Game() {
     int i;
 
     delete m_pack;
     delete m_discard;
-    for (i = 0; i < 8; i++)
-    {
+    for (i = 0; i < 8; i++) {
         delete m_foundations[i];
     }
-    for (i = 0; i < 10; i++)
-    {
+    for (i = 0; i < 10; i++) {
         delete m_bases[i];
     }
     delete m_bmap;
@@ -110,8 +101,7 @@ Set the score for a new player.
 NB: call Deal() first if the new player is to start
 a new game
 */
-void Game::NewPlayer(int wins, int games, int score)
-{
+void Game::NewPlayer(int wins, int games, int score) {
     m_numWins = wins;
     m_numGames = games;
     m_totalScore = score;
@@ -119,10 +109,8 @@ void Game::NewPlayer(int wins, int games, int score)
 }
 
 // Undo the last move
-void Game::Undo(wxDC& dc)
-{
-    if (m_moveIndex > 0)
-    {
+void Game::Undo(wxDC& dc) {
+    if (m_moveIndex > 0) {
         m_moveIndex--;
         Card* card = m_moves[m_moveIndex].dest->RemoveTopCard(dc);
         m_moves[m_moveIndex].src->AddCard(dc, card);
@@ -131,13 +119,10 @@ void Game::Undo(wxDC& dc)
 }
 
 // Redo the last move
-void Game::Redo(wxDC& dc)
-{
-    if (m_moveIndex < m_redoIndex)
-    {
+void Game::Redo(wxDC& dc) {
+    if (m_moveIndex < m_redoIndex) {
         Card* card = m_moves[m_moveIndex].src->RemoveTopCard(dc);
-        if (m_moves[m_moveIndex].src == m_pack)
-        {
+        if (m_moves[m_moveIndex].src == m_pack) {
             m_pack->Redraw(dc);
             card->TurnCard(faceup);
         }
@@ -147,12 +132,9 @@ void Game::Redo(wxDC& dc)
     }
 }
 
-void Game::DoMove(wxDC& dc, Pile* src, Pile* dest)
-{
-    if (m_moveIndex < MaxMoves)
-    {
-        if (src == dest)
-        {
+void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
+    if (m_moveIndex < MaxMoves) {
+        if (src == dest) {
             wxMessageBox(wxT("Game::DoMove() src == dest"), wxT("Debug message"),
                    wxOK | wxICON_EXCLAMATION);
         }
@@ -169,20 +151,17 @@ void Game::DoMove(wxDC& dc, Pile* src, Pile* dest)
                wxOK | wxICON_EXCLAMATION);
     }
 
-    if (!m_inPlay)
-    {
+    if (!m_inPlay) {
         m_inPlay = true;
         m_numGames++;
     }
     DisplayScore(dc);
 
-    if (HaveYouWon())
-    {
+    if (HaveYouWon()) {
         wxWindow *frame = wxTheApp->GetTopWindow();
         wxWindow *canvas = (wxWindow *) NULL;
 
-        if (frame)
-        {
+        if (frame) {
             wxWindowList::compatibility_iterator node = frame->GetChildren().GetFirst();
             if (node) canvas = (wxWindow*)node->GetData();
         }
@@ -194,8 +173,7 @@ void Game::DoMove(wxDC& dc, Pile* src, Pile* dest)
         DisplayScore(dc);
 
         if (wxMessageBox(wxT("Do you wish to play again?"),
-            wxT("Well Done, You have won!"), wxYES_NO | wxICON_QUESTION) == wxYES)
-        {
+            wxT("Well Done, You have won!"), wxYES_NO | wxICON_QUESTION) == wxYES) {
             Deal();
             canvas->Refresh();
         }
@@ -208,8 +186,7 @@ void Game::DoMove(wxDC& dc, Pile* src, Pile* dest)
 }
 
 
-void Game::DisplayScore(wxDC& dc)
-{
+void Game::DisplayScore(wxDC& dc) {
     wxColour bgColour = FortyApp::BackgroundColour();
     wxPen* pen = wxThePenList->FindOrCreatePen(bgColour);
     dc.SetTextBackground(bgColour);
@@ -219,8 +196,7 @@ void Game::DisplayScore(wxDC& dc)
 
     // count the number of cards in foundations
     m_currentScore = 0;
-    for (int i = 0; i < 8; i++)
-    {
+    for (int i = 0; i < 8; i++) {
         m_currentScore += m_foundations[i]->GetNumCards();
     }
 
@@ -254,8 +230,7 @@ void Game::DisplayScore(wxDC& dc)
     y += h;
 
     int average = 0;
-    if (m_numGames > 0)
-    {
+    if (m_numGames > 0) {
         average = (2 * (m_currentScore + m_totalScore) + m_numGames ) / (2 * m_numGames);
     }
     str.Printf(wxT("%d"), average);
@@ -265,41 +240,34 @@ void Game::DisplayScore(wxDC& dc)
 
 
 // Shuffle the m_pack and deal the cards
-void Game::Deal()
-{
+void Game::Deal() {
     int i, j;
     Card* card;
 
     // Reset all the piles, the undo buffer and shuffle the m_pack
     m_moveIndex = 0;
     m_pack->ResetPile();
-    for (i = 0; i < 5; i++)
-    {
+    for (i = 0; i < 5; i++) {
         m_pack->Shuffle();
     }
     m_discard->ResetPile();
-    for (i = 0; i < 10; i++)
-    {
+    for (i = 0; i < 10; i++) {
         m_bases[i]->ResetPile();
     }
-    for (i = 0; i <  8; i++)
-    {
+    for (i = 0; i <  8; i++) {
         m_foundations[i]->ResetPile();
     }
 
     // Deal the initial 40 cards onto the bases
-    for (i = 0; i < 10; i++)
-    {
-        for (j = 1; j <= 4; j++)
-        {
+    for (i = 0; i < 10; i++) {
+        for (j = 1; j <= 4; j++) {
             card = m_pack->RemoveTopCard();
             card->TurnCard(faceup);
             m_bases[i]->AddCard(card);
         }
     }
 
-    if (m_inPlay)
-    {
+    if (m_inPlay) {
         // player has started the game and then redealt
         // and so we must add the score for this game to the total score
         m_totalScore += m_currentScore;
@@ -310,23 +278,19 @@ void Game::Deal()
 
 
 // Redraw the m_pack, discard pile, the bases and the foundations
-void Game::Redraw(wxDC& dc)
-{
+void Game::Redraw(wxDC& dc) {
     int i;
     m_pack->Redraw(dc);
     m_discard->Redraw(dc);
-    for (i = 0; i < 8; i++)
-    {
+    for (i = 0; i < 8; i++) {
         m_foundations[i]->Redraw(dc);
     }
-    for (i = 0; i < 10; i++)
-    {
+    for (i = 0; i < 10; i++) {
         m_bases[i]->Redraw(dc);
     }
     DisplayScore(dc);
 
-    if (m_bmap == 0)
-    {
+    if (m_bmap == 0) {
         m_bmap = new wxBitmap(CardWidth, CardHeight);
         m_bmapCard = new wxBitmap(CardWidth, CardHeight);
 
@@ -346,35 +310,28 @@ void Game::Redraw(wxDC& dc)
 // Test to see if the point (x, y) is over the top card of one of the piles
 // Returns pointer to the pile, or 0 if (x, y) is not over a pile
 // or the pile is empty
-Pile* Game::WhichPile(int x, int y)
-{
+Pile* Game::WhichPile(int x, int y) {
     if (m_pack->GetCard(x, y) &&
-        m_pack->GetCard(x, y) == m_pack->GetTopCard())
-    {
+        m_pack->GetCard(x, y) == m_pack->GetTopCard()) {
         return m_pack;
     }
 
     if (m_discard->GetCard(x, y) &&
-        m_discard->GetCard(x, y) == m_discard->GetTopCard())
-    {
+        m_discard->GetCard(x, y) == m_discard->GetTopCard()) {
         return m_discard;
     }
 
     int i;
-    for (i = 0; i < 8; i++)
-    {
+    for (i = 0; i < 8; i++) {
         if (m_foundations[i]->GetCard(x, y) &&
-            m_foundations[i]->GetCard(x, y) == m_foundations[i]->GetTopCard())
-        {
+            m_foundations[i]->GetCard(x, y) == m_foundations[i]->GetTopCard()) {
             return m_foundations[i];
         }
     }
 
-    for (i = 0; i < 10; i++)
-    {
+    for (i = 0; i < 10; i++) {
         if (m_bases[i]->GetCard(x, y) &&
-            m_bases[i]->GetCard(x, y) == m_bases[i]->GetTopCard())
-        {
+            m_bases[i]->GetCard(x, y) == m_bases[i]->GetTopCard()) {
             return m_bases[i];
         }
     }
@@ -384,14 +341,11 @@ Pile* Game::WhichPile(int x, int y)
 
 // Left button is pressed - if cursor is over the m_pack then deal a card
 // otherwise if it is over a card pick it up ready to be dragged - see MouseMove()
-bool Game::LButtonDown(wxDC& dc, int x, int y)
-{
+bool Game::LButtonDown(wxDC& dc, int x, int y) {
     m_srcPile = WhichPile(x, y);
-    if (m_srcPile == m_pack)
-    {
+    if (m_srcPile == m_pack) {
         Card* card = m_pack->RemoveTopCard();
-        if (card)
-        {
+        if (card) {
             m_pack->Redraw(dc);
             card->TurnCard(faceup);
             m_discard->AddCard(dc, card);
@@ -399,8 +353,7 @@ bool Game::LButtonDown(wxDC& dc, int x, int y)
         }
         m_srcPile = 0;
     }
-    else if (m_srcPile)
-    {
+    else if (m_srcPile) {
         m_srcPile->GetTopCardPos(m_xPos, m_yPos);
         m_xOffset = m_xPos - x;
         m_yOffset = m_yPos - y;
@@ -430,37 +383,30 @@ bool Game::LButtonDown(wxDC& dc, int x, int y)
 // an empty base as third choice.
 // NB Cards in the m_pack cannot be moved in this way - they aren't in play
 // yet
-void Game::LButtonDblClk(wxDC& dc, int x, int y)
-{
+void Game::LButtonDblClk(wxDC& dc, int x, int y) {
     Pile* pile = WhichPile(x, y);
     if (!pile) return;
 
     // Double click on m_pack is the same as left button down
-    if (pile == m_pack)
-    {
+    if (pile == m_pack) {
         LButtonDown(dc, x, y);
     }
     else
     {
         Card* card = pile->GetTopCard();
 
-        if (card)
-        {
+        if (card) {
             int i;
 
             // if the card is an ace then try to place it next
             // to an ace of the same suit
-            if (card->GetPipValue() == 1)
-            {
-                for(i = 0; i < 4; i++)
-                {
+            if (card->GetPipValue() == 1) {
+                for(i = 0; i < 4; i++) {
                     Card* m_topCard = m_foundations[i]->GetTopCard();
-                    if ( m_topCard )
-                    {
+                    if ( m_topCard ) {
                         if (m_topCard->GetSuit() == card->GetSuit() &&
                             m_foundations[i + 4] != pile &&
-                            m_foundations[i + 4]->GetTopCard() == 0)
-                        {
+                            m_foundations[i + 4]->GetTopCard() == 0) {
                             pile->RemoveTopCard(dc);
                             m_foundations[i + 4]->AddCard(dc, card);
                             DoMove(dc, pile, m_foundations[i + 4]);
@@ -471,10 +417,8 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
             }
 
             // try to place the card on a foundation
-            for(i = 0; i < 8; i++)
-            {
-                if (m_foundations[i]->AcceptCard(card) && m_foundations[i] != pile)
-                {
+            for(i = 0; i < 8; i++) {
+                if (m_foundations[i]->AcceptCard(card) && m_foundations[i] != pile) {
                     pile->RemoveTopCard(dc);
                     m_foundations[i]->AddCard(dc, card);
                     DoMove(dc, pile, m_foundations[i]);
@@ -482,12 +426,10 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
                 }
             }
             // try to place the card on a populated base
-            for(i = 0; i < 10; i++)
-            {
+            for(i = 0; i < 10; i++) {
                 if (m_bases[i]->AcceptCard(card) &&
                     m_bases[i] != pile &&
-                    m_bases[i]->GetTopCard())
-                {
+                    m_bases[i]->GetTopCard()) {
                     pile->RemoveTopCard(dc);
                     m_bases[i]->AddCard(dc, card);
                     DoMove(dc, pile, m_bases[i]);
@@ -495,10 +437,8 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
                 }
             }
             // try to place the card on any base
-            for(i = 0; i < 10; i++)
-            {
-                if (m_bases[i]->AcceptCard(card) && m_bases[i] != pile)
-                {
+            for(i = 0; i < 10; i++) {
+                if (m_bases[i]->AcceptCard(card) && m_bases[i] != pile) {
                     pile->RemoveTopCard(dc);
                     m_bases[i]->AddCard(dc, card);
                     DoMove(dc, pile, m_bases[i]);
@@ -512,12 +452,10 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y)
 
 // Test to see whether the game has been won:
 // i.e. m_pack, discard and bases are empty
-bool Game::HaveYouWon()
-{
+bool Game::HaveYouWon() {
     if (m_pack->GetTopCard()) return false;
     if (m_discard->GetTopCard()) return false;
-    for(int i = 0; i < 10; i++)
-    {
+    for(int i = 0; i < 10; i++) {
         if (m_bases[i]->GetTopCard()) return false;
     }
     m_numWins++;
@@ -529,29 +467,22 @@ bool Game::HaveYouWon()
 
 // See whether the card under the cursor can be moved somewhere else
 // Returns 'true' if it can be moved, 'false' otherwise
-bool Game::CanYouGo(int x, int y)
-{
+bool Game::CanYouGo(int x, int y) {
     Pile* pile = WhichPile(x, y);
-    if (pile && pile != m_pack)
-    {
+    if (pile && pile != m_pack) {
         Card* card = pile->GetTopCard();
 
-        if (card)
-        {
+        if (card) {
             int i;
-            for(i = 0; i < 8; i++)
-            {
-                if (m_foundations[i]->AcceptCard(card) && m_foundations[i] != pile)
-                {
+            for(i = 0; i < 8; i++) {
+                if (m_foundations[i]->AcceptCard(card) && m_foundations[i] != pile) {
                     return true;
                 }
             }
-            for(i = 0; i < 10; i++)
-            {
+            for(i = 0; i < 10; i++) {
                 if (m_bases[i]->GetTopCard() &&
                     m_bases[i]->AcceptCard(card) &&
-                    m_bases[i] != pile)
-                {
+                    m_bases[i] != pile) {
                     return true;
                 }
             }
@@ -565,10 +496,8 @@ bool Game::CanYouGo(int x, int y)
 // Scan the piles to see if this card overlaps a pile and can be added
 // to the pile. If the card overlaps more than one pile on which it can be placed
 // then put it on the nearest pile.
-void Game::LButtonUp(wxDC& dc, int x, int y)
-{
-    if (m_srcPile)
-    {
+void Game::LButtonUp(wxDC& dc, int x, int y) {
+    if (m_srcPile) {
         // work out the position of the dragged card
         x += m_xOffset;
         y += m_yOffset;
@@ -578,23 +507,17 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
 
         // find the nearest pile which will accept the card
         int i;
-        for (i = 0; i < 8; i++)
-        {
-            if (DropCard(x, y, m_foundations[i], m_liftedCard))
-            {
-                if (m_foundations[i]->CalcDistance(x, y) < distance)
-                {
+        for (i = 0; i < 8; i++) {
+            if (DropCard(x, y, m_foundations[i], m_liftedCard)) {
+                if (m_foundations[i]->CalcDistance(x, y) < distance) {
                     nearestPile = m_foundations[i];
                     distance = nearestPile->CalcDistance(x, y);
                 }
             }
         }
-        for (i = 0; i < 10; i++)
-        {
-            if (DropCard(x, y, m_bases[i], m_liftedCard))
-            {
-                if (m_bases[i]->CalcDistance(x, y) < distance)
-                {
+        for (i = 0; i < 10; i++) {
+            if (DropCard(x, y, m_bases[i], m_liftedCard)) {
+                if (m_bases[i]->CalcDistance(x, y) < distance) {
                     nearestPile = m_bases[i];
                     distance = nearestPile->CalcDistance(x, y);
                 }
@@ -608,12 +531,10 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
                &memoryDC, 0, 0, wxCOPY);
 
         // Draw the card in its new position
-        if (nearestPile)
-        {
+        if (nearestPile) {
             // Add to new pile
             nearestPile->AddCard(dc, m_liftedCard);
-            if (nearestPile != m_srcPile)
-            {
+            if (nearestPile != m_srcPile) {
                 DoMove(dc, m_srcPile, nearestPile);
             }
         }
@@ -630,13 +551,10 @@ void Game::LButtonUp(wxDC& dc, int x, int y)
 
 
 
-bool Game::DropCard(int x, int y, Pile* pile, Card* card)
-{
+bool Game::DropCard(int x, int y, Pile* pile, Card* card) {
     bool retval = false;
-    if (pile->Overlap(x, y))
-    {
-        if (pile->AcceptCard(card))
-        {
+    if (pile->Overlap(x, y)) {
+        if (pile->AcceptCard(card)) {
             retval = true;
         }
     }
@@ -644,18 +562,15 @@ bool Game::DropCard(int x, int y, Pile* pile, Card* card)
 }
 
 
-void Game::MouseMove(wxDC& dc, int mx, int my)
-{
-    if (m_liftedCard)
-    {
+void Game::MouseMove(wxDC& dc, int mx, int my) {
+    if (m_liftedCard) {
         wxMemoryDC memoryDC;
         memoryDC.SelectObject(*m_bmap);
 
         int dx = mx + m_xOffset - m_xPos;
         int dy = my + m_yOffset - m_yPos;
 
-        if (abs(dx) >= CardWidth || abs(dy) >= CardHeight)
-        {
+        if (abs(dx) >= CardWidth || abs(dy) >= CardHeight) {
             // Restore the area under the card
             dc.Blit(m_xPos, m_yPos, CardWidth, CardHeight,
                &memoryDC, 0, 0, wxCOPY);
@@ -664,12 +579,10 @@ void Game::MouseMove(wxDC& dc, int mx, int my)
             memoryDC.Blit(0, 0, CardWidth, CardHeight,
                &dc, m_xPos + dx, m_yPos + dy, wxCOPY);
         }
-        else if (dx >= 0)
-        {
+        else if (dx >= 0) {
             // dx >= 0
             dc.Blit(m_xPos, m_yPos, dx, CardHeight, &memoryDC, 0, 0, wxCOPY);
-            if (dy >= 0)
-            {
+            if (dy >= 0) {
                 // dy >= 0
                 dc.Blit(m_xPos + dx, m_yPos, CardWidth - dx, dy, &memoryDC, dx, 0, wxCOPY);
                 memoryDC.Blit(0, 0, CardWidth - dx, CardHeight - dy,
@@ -695,8 +608,7 @@ void Game::MouseMove(wxDC& dc, int mx, int my)
             // dx < 0
             dc.Blit(m_xPos + CardWidth + dx, m_yPos, -dx, CardHeight,
                    &memoryDC, CardWidth + dx, 0, wxCOPY);
-            if (dy >= 0)
-            {
+            if (dy >= 0) {
                 dc.Blit(m_xPos, m_yPos, CardWidth + dx, dy, &memoryDC, 0, 0, wxCOPY);
                 memoryDC.Blit(-dx, 0, CardWidth + dx, CardHeight - dy,
                        &memoryDC, 0, dy, wxCOPY);
@@ -731,18 +643,15 @@ void Game::MouseMove(wxDC& dc, int mx, int my)
 //----------------------------------------------//
 // The Pack class: holds the two decks of cards //
 //----------------------------------------------//
-Pack::Pack(int x, int y) : Pile(x, y, 0, 0)
-{
-    for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
-    {
+Pack::Pack(int x, int y) : Pile(x, y, 0, 0) {
+    for (m_topCard = 0; m_topCard < NumCards; m_topCard++) {
         m_cards[m_topCard] = new Card(1 + m_topCard / 2, facedown);
     }
     m_topCard = NumCards - 1;
 }
 
 
-void Pack::Shuffle()
-{
+void Pack::Shuffle() {
     Card* temp[NumCards];
     int i;
 
@@ -752,15 +661,12 @@ void Pack::Shuffle()
     // Copy the cards into a temporary array. Start by clearing
     // the array and then copy the card into a random position.
     // If the position is occupied then find the next lower position.
-    for (i = 0; i <= m_topCard; i++)
-    {
+    for (i = 0; i <= m_topCard; i++) {
         temp[i] = 0;
     }
-    for (i = 0; i <= m_topCard; i++)
-    {
+    for (i = 0; i <= m_topCard; i++) {
         int pos = rand() % (m_topCard + 1);
-        while (temp[pos])
-        {
+        while (temp[pos]) {
             pos--;
             if (pos < 0) pos = m_topCard;
         }
@@ -772,11 +678,9 @@ void Pack::Shuffle()
     // Copy each card back into the m_pack in a random
     // position. If position is occupied then find nearest
     // unoccupied position after the random position.
-    for (i = 0; i <= m_topCard; i++)
-    {
+    for (i = 0; i <= m_topCard; i++) {
         int pos = rand() % (m_topCard + 1);
-        while (m_cards[pos])
-        {
+        while (m_cards[pos]) {
             pos++;
             if (pos > m_topCard) pos = 0;
         }
@@ -784,8 +688,7 @@ void Pack::Shuffle()
     }
 }
 
-void Pack::Redraw(wxDC& dc)
-{
+void Pack::Redraw(wxDC& dc) {
     Pile::Redraw(dc);
 
     wxString str;
@@ -798,10 +701,8 @@ void Pack::Redraw(wxDC& dc)
 
 }
 
-void Pack::AddCard(Card* card)
-{
-    if (card == m_cards[m_topCard + 1])
-    {
+void Pack::AddCard(Card* card) {
+    if (card == m_cards[m_topCard + 1]) {
         m_topCard++;
     }
     else
@@ -813,10 +714,8 @@ void Pack::AddCard(Card* card)
 }
 
 
-Pack::~Pack()
-{
-    for (m_topCard = 0; m_topCard < NumCards; m_topCard++)
-    {
+Pack::~Pack() {
+    for (m_topCard = 0; m_topCard < NumCards; m_topCard++) {
         delete m_cards[m_topCard];
     }
 }
@@ -825,21 +724,17 @@ Pack::~Pack()
 //------------------------------------------------------//
 // The Base class: holds the initial pile of four cards //
 //------------------------------------------------------//
-Base::Base(int x, int y) : Pile(x, y, 0, 12)
-{
+Base::Base(int x, int y) : Pile(x, y, 0, 12) {
     m_topCard = -1;
 }
 
 
-bool Base::AcceptCard(Card* card)
-{
+bool Base::AcceptCard(Card* card) {
     bool retval = false;
 
-    if (m_topCard >= 0)
-    {
+    if (m_topCard >= 0) {
         if (m_cards[m_topCard]->GetSuit() == card->GetSuit() &&
-            m_cards[m_topCard]->GetPipValue() - 1 == card->GetPipValue())
-        {
+            m_cards[m_topCard]->GetPipValue() - 1 == card->GetPipValue()) {
             retval = true;
         }
     }
@@ -855,25 +750,20 @@ bool Base::AcceptCard(Card* card)
 //----------------------------------------------------------------//
 // The Foundation class: holds the cards built up from the ace... //
 //----------------------------------------------------------------//
-Foundation::Foundation(int x, int y) : Pile(x, y, 0, 0)
-{
+Foundation::Foundation(int x, int y) : Pile(x, y, 0, 0) {
     m_topCard = -1;
 }
 
-bool Foundation::AcceptCard(Card* card)
-{
+bool Foundation::AcceptCard(Card* card) {
     bool retval = false;
 
-    if (m_topCard >= 0)
-    {
+    if (m_topCard >= 0) {
         if (m_cards[m_topCard]->GetSuit() == card->GetSuit() &&
-            m_cards[m_topCard]->GetPipValue() + 1 == card->GetPipValue())
-        {
+            m_cards[m_topCard]->GetPipValue() + 1 == card->GetPipValue()) {
             retval = true;
         }
     }
-    else if (card->GetPipValue() == 1)
-    {
+    else if (card->GetPipValue() == 1) {
         // It's an ace and the pile is empty - ACCEPT
         retval = true;
     }
@@ -884,30 +774,24 @@ bool Foundation::AcceptCard(Card* card)
 //----------------------------------------------------//
 // The Discard class: holds cards dealt from the m_pack //
 //----------------------------------------------------//
-Discard::Discard(int x, int y) : Pile(x, y, 19, 0)
-{
+Discard::Discard(int x, int y) : Pile(x, y, 19, 0) {
     m_topCard = -1;
 }
 
-void Discard::Redraw(wxDC& dc)
-{
-    if (m_topCard >= 0)
-    {
-        if (m_dx == 0 && m_dy == 0)
-        {
+void Discard::Redraw(wxDC& dc) {
+    if (m_topCard >= 0) {
+        if (m_dx == 0 && m_dy == 0) {
             m_cards[m_topCard]->Draw(dc, m_x, m_y);
         }
         else
         {
             int x = m_x;
             int y = m_y;
-            for (int i = 0; i <= m_topCard; i++)
-            {
+            for (int i = 0; i <= m_topCard; i++) {
                 m_cards[i]->Draw(dc, x, y);
                 x += m_dx;
                 y += m_dy;
-                if (i == 31)
-                {
+                if (i == 31) {
                     x = m_x;
                     y = m_y + CardHeight / 3;
                 }
@@ -921,15 +805,12 @@ void Discard::Redraw(wxDC& dc)
 }
 
 
-void Discard::GetTopCardPos(int& x, int& y)
-{
-    if (m_topCard < 0)
-    {
+void Discard::GetTopCardPos(int& x, int& y) {
+    if (m_topCard < 0) {
         x = m_x;
         y = m_y;
     }
-    else if (m_topCard > 31)
-    {
+    else if (m_topCard > 31) {
         x = m_x + m_dx * (m_topCard - 32);
         y = m_y + CardHeight / 3;
     }
@@ -941,12 +822,10 @@ void Discard::GetTopCardPos(int& x, int& y)
 }
 
 
-Card* Discard::RemoveTopCard(wxDC& dc, int m_xOffset, int m_yOffset)
-{
+Card* Discard::RemoveTopCard(wxDC& dc, int m_xOffset, int m_yOffset) {
     Card* card;
 
-    if (m_topCard <= 31)
-    {
+    if (m_topCard <= 31) {
         card = Pile::RemoveTopCard(dc, m_xOffset, m_yOffset);
     }
     else
@@ -959,12 +838,10 @@ Card* Discard::RemoveTopCard(wxDC& dc, int m_xOffset, int m_yOffset)
         dc.SetClippingRegion(topX - m_xOffset, topY - m_yOffset,
                      CardWidth, CardHeight);
 
-        for (int i = m_topCard - 31; i <= m_topCard - 31 + CardWidth / m_dx; i++)
-        {
+        for (int i = m_topCard - 31; i <= m_topCard - 31 + CardWidth / m_dx; i++) {
             m_cards[i]->Draw(dc, m_x - m_xOffset + i * m_dx, m_y - m_yOffset);
         }
-        if (m_topCard > 31)
-        {
+        if (m_topCard > 31) {
             m_cards[m_topCard]->Draw(dc, topX - m_xOffset - m_dx, topY - m_yOffset);
         }
         dc.DestroyClippingRegion();

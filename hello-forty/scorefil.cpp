@@ -21,20 +21,17 @@
 
 #include "scorefil.h"
 
-ScoreFile::ScoreFile(const wxString& appName)
-{
+ScoreFile::ScoreFile(const wxString& appName) {
     m_config = new wxConfig(appName, wxT("wxWidgets"), appName, wxEmptyString,
                                 wxCONFIG_USE_LOCAL_FILE);  // only local
 }
 
-ScoreFile::~ScoreFile()
-{
+ScoreFile::~ScoreFile() {
     delete m_config;
 }
 
 
-void ScoreFile::GetPlayerList( wxArrayString &list )
-{
+void ScoreFile::GetPlayerList( wxArrayString &list ) {
     m_config->SetPath(wxT("/Players"));
     int length = m_config->GetNumberOfGroups();
 
@@ -42,11 +39,9 @@ void ScoreFile::GetPlayerList( wxArrayString &list )
 
     wxString player;
     long index;
-    if (m_config->GetFirstGroup(player, index))
-    {
+    if (m_config->GetFirstGroup(player, index)) {
          list.Add( player );
-        while (m_config->GetNextGroup(player, index))
-        {
+        while (m_config->GetNextGroup(player, index)) {
               list.Add( player );
         }
     }
@@ -55,13 +50,11 @@ void ScoreFile::GetPlayerList( wxArrayString &list )
 
 // Calculate an encrypted check number to prevent tampering with
 // score file
-long ScoreFile::CalcCheck(const wxString& name, int p1, int p2, int p3)
-{
+long ScoreFile::CalcCheck(const wxString& name, int p1, int p2, int p3) {
     long check = 0;
     size_t i, max = name.length();
 
-    for(i = 0; i < max; ++i )
-    {
+    for(i = 0; i < max; ++i ) {
         check = (check << 1) ^ (long)name[i];
         check = ((check >> 23) ^ check) & 0xFFFFFF;
     }
@@ -86,8 +79,7 @@ void ScoreFile::ReadPlayersScore(
                         const wxString& player,
                         int& wins,
                         int& games,
-                        int& score)
-{
+                        int& score) {
     long check = 0;
     long myWins = 0, myGames = 0, myScore = 0;
 
@@ -98,10 +90,8 @@ void ScoreFile::ReadPlayersScore(
     if (m_config->Read(wxT("Score"), &myScore, 0L) &&
         m_config->Read(wxT("Games"), &myGames, 0L) &&
         m_config->Read(wxT("Wins"),  &myWins, 0L) &&
-        m_config->Read(wxT("Check"), &check, 0L))
-    {
-        if (check != CalcCheck(player, myGames, myWins, myScore))
-        {
+        m_config->Read(wxT("Check"), &check, 0L)) {
+        if (check != CalcCheck(player, myGames, myWins, myScore)) {
             wxMessageBox(wxT("Score file corrupted"), wxT("Warning"),
                                      wxOK | wxICON_EXCLAMATION);
         }
@@ -116,10 +106,8 @@ void ScoreFile::ReadPlayersScore(
 }
 
 
-void ScoreFile::WritePlayersScore(const wxString& player, int wins, int games, int score)
-{
-    if (!player.empty())
-    {
+void ScoreFile::WritePlayersScore(const wxString& player, int wins, int games, int score) {
+    if (!player.empty()) {
         m_config->SetPath(wxT("/General"));
         m_config->Write(wxT("LastPlayer"), wxString(player)); // Without wxString tmp, thinks it's bool in VC++
 

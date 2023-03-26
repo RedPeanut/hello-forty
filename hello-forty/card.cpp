@@ -50,29 +50,22 @@ int Card::m_height = 70;
 //| initialises the suit, colour, pipValue and wayUp.           |
 //+-------------------------------------------------------------+
 Card::Card(int value, WayUp way_up) :
-      m_wayUp(way_up)
-{
-    if (!m_symbolBmap)
-    {
+      m_wayUp(way_up) {
+    if (!m_symbolBmap) {
         m_symbolBmap = new wxBitmap(symbols_xpm);
-        if (!m_symbolBmap->IsOk())
-        {
+        if (!m_symbolBmap->IsOk()) {
             ::wxMessageBox(wxT("Failed to load bitmap CardSymbols"), wxT("Error"));
         }
     }
-    if (!m_pictureBmap)
-    {
+    if (!m_pictureBmap) {
         m_pictureBmap = new wxBitmap(Pictures);
-        if (!m_pictureBmap->IsOk())
-        {
+        if (!m_pictureBmap->IsOk()) {
             ::wxMessageBox(wxT("Failed to load bitmap CardPictures"), wxT("Error"));
         }
     }
 
-    if (value >= 1 && value <= PackSize)
-    {
-        switch ((value - 1) / 13)
-        {
+    if (value >= 1 && value <= PackSize) {
+        switch ((value - 1) / 13) {
             case 0:
                 m_suit = clubs;
                 m_colour = black;
@@ -106,8 +99,7 @@ Card::Card(int value, WayUp way_up) :
 //| Description:                                                |
 //|     Scales the cards                                        |
 //+-------------------------------------------------------------+
-void Card::SetScale(double scale)
-{
+void Card::SetScale(double scale) {
     m_scale = scale;
     m_width = int(50*scale);
     m_height = int(70*scale);
@@ -120,8 +112,7 @@ void Card::SetScale(double scale)
 //| Erase the card at (x, y) by drawing a rectangle in the      |
 //| background colour.                                          |
 //+-------------------------------------------------------------+
-void Card::Erase(wxDC& dc, int x, int y)
-{
+void Card::Erase(wxDC& dc, int x, int y) {
     wxPen* pen = wxThePenList->FindOrCreatePen(
                         FortyApp::BackgroundColour()
                         );
@@ -152,14 +143,12 @@ void Card::Erase(wxDC& dc, int x, int y)
 //| code. Editing the bitmaps or the numbers below will         |
 //| result in the wrong symbols being displayed.                |
 //+-------------------------------------------------------------+
-void Card::Draw(wxDC& dc, int x, int y)
-{
+void Card::Draw(wxDC& dc, int x, int y) {
     wxBrush backgroundBrush( dc.GetBackground() );
     dc.SetBrush(* wxWHITE_BRUSH);
     dc.SetPen(* wxBLACK_PEN);
         dc.DrawRoundedRectangle(x, y, m_width, m_height, 4);
-    if (m_wayUp == facedown)
-    {
+    if (m_wayUp == facedown) {
         dc.SetBackground(* wxRED_BRUSH);
         dc.SetBackgroundMode(wxBRUSHSTYLE_SOLID);
         wxBrush* brush = wxTheBrushList->FindOrCreateBrush(
@@ -182,8 +171,7 @@ void Card::Draw(wxDC& dc, int x, int y)
 //        dc.SetBackgroundMode(wxBRUSHSTYLE_TRANSPARENT);
 
         dc.SetTextBackground(*wxWHITE);
-        switch (m_suit)
-        {
+        switch (m_suit) {
             case spades:
             case clubs:
                 dc.SetTextForeground(*wxBLACK);
@@ -202,8 +190,7 @@ void Card::Draw(wxDC& dc, int x, int y)
 
         int pipsize,pippos,valueheight,valuewidth;
         int valuepos;
-        if (m_scale > 1.2)
-        {
+        if (m_scale > 1.2) {
             pipsize = symsize;
             pippos = sympos;
             valueheight = 10;
@@ -255,8 +242,7 @@ void Card::Draw(wxDC& dc, int x, int y)
                 pipsize+pippos,
                 wxCOPY);
 
-        switch (m_pipValue)
-        {
+        switch (m_pipValue) {
         case 1:
             dc.Blit((wxCoord)(x - symdist + m_width / 2),
                     (wxCoord)(y - m_scale*5 + m_height / 2),
@@ -543,8 +529,7 @@ void Card::Draw(wxDC& dc, int x, int y)
 //| Draws the outline of a card at (x, y).                      |
 //| Used to draw place holders for empty piles of cards.        |
 //+-------------------------------------------------------------+
-void Card::DrawNullCard(wxDC& dc, int x, int y)
-{
+void Card::DrawNullCard(wxDC& dc, int x, int y) {
     wxPen* pen = wxThePenList->FindOrCreatePen(FortyApp::TextColour());
     dc.SetBrush(FortyApp::BackgroundBrush());
     dc.SetPen(*pen);
