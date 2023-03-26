@@ -7,11 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F66C28329CF522400927192 /* wxmApp.hpp in Resources */ = {isa = PBXBuildFile; fileRef = 1F66C28229CF522400927192 /* wxmApp.hpp */; };
-		1F66C28529CF522400927192 /* wxmApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F66C28429CF522400927192 /* wxmApp.cpp */; };
-		1F66C28729CF522400927192 /* wxmView.hpp in Resources */ = {isa = PBXBuildFile; fileRef = 1F66C28629CF522400927192 /* wxmView.hpp */; };
-		1F66C28929CF522400927192 /* wxmView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F66C28829CF522400927192 /* wxmView.cpp */; };
-		1F66C28B29CF522400927192 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F66C28A29CF522400927192 /* main.cpp */; };
+		1FA2A3E829CFD972009BDC7D /* forty_vc7.vcproj in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3C829CFD96F009BDC7D /* forty_vc7.vcproj */; };
+		1FA2A3E929CFD972009BDC7D /* about.htm in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3C929CFD96F009BDC7D /* about.htm */; };
+		1FA2A3EA29CFD972009BDC7D /* makefile.unx in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3CC29CFD96F009BDC7D /* makefile.unx */; };
+		1FA2A3EB29CFD972009BDC7D /* Makefile.in in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3CD29CFD96F009BDC7D /* Makefile.in */; };
+		1FA2A3EC29CFD972009BDC7D /* pictures.xpm in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3CE29CFD96F009BDC7D /* pictures.xpm */; };
+		1FA2A3ED29CFD972009BDC7D /* forty.bkl in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3CF29CFD96F009BDC7D /* forty.bkl */; };
+		1FA2A3EE29CFD972009BDC7D /* canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2A3D029CFD970009BDC7D /* canvas.cpp */; };
+		1FA2A3EF29CFD972009BDC7D /* playerdg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2A3D329CFD970009BDC7D /* playerdg.cpp */; };
+		1FA2A3F029CFD972009BDC7D /* cards.ico in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3D429CFD970009BDC7D /* cards.ico */; };
+		1FA2A3F129CFD972009BDC7D /* pile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2A3D529CFD970009BDC7D /* pile.cpp */; };
+		1FA2A3F229CFD972009BDC7D /* makefile.gcc in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3D729CFD970009BDC7D /* makefile.gcc */; };
+		1FA2A3F329CFD972009BDC7D /* forty.rc in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3D829CFD970009BDC7D /* forty.rc */; };
+		1FA2A3F429CFD972009BDC7D /* forty_vc9.vcproj in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3D929CFD970009BDC7D /* forty_vc9.vcproj */; };
+		1FA2A3F529CFD972009BDC7D /* descrip.mms in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3DA29CFD971009BDC7D /* descrip.mms */; };
+		1FA2A3F629CFD972009BDC7D /* forty_vc8.vcproj in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3DB29CFD971009BDC7D /* forty_vc8.vcproj */; };
+		1FA2A3F729CFD972009BDC7D /* forty.xpm in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3DC29CFD971009BDC7D /* forty.xpm */; };
+		1FA2A3F829CFD972009BDC7D /* makefile.vc in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3DD29CFD971009BDC7D /* makefile.vc */; };
+		1FA2A3F929CFD972009BDC7D /* card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2A3DE29CFD971009BDC7D /* card.cpp */; };
+		1FA2A3FA29CFD972009BDC7D /* game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2A3E029CFD971009BDC7D /* game.cpp */; };
+		1FA2A3FB29CFD972009BDC7D /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3E129CFD971009BDC7D /* readme.txt */; };
+		1FA2A3FC29CFD972009BDC7D /* forty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2A3E329CFD971009BDC7D /* forty.cpp */; };
+		1FA2A3FD29CFD972009BDC7D /* scorefil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2A3E429CFD971009BDC7D /* scorefil.cpp */; };
+		1FA2A3FE29CFD972009BDC7D /* scoredg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2A3E529CFD971009BDC7D /* scoredg.cpp */; };
+		1FA2A3FF29CFD972009BDC7D /* symbols.xpm in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3E629CFD972009BDC7D /* symbols.xpm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,11 +47,38 @@
 
 /* Begin PBXFileReference section */
 		1F66C27F29CF522400927192 /* hello-forty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hello-forty.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1F66C28229CF522400927192 /* wxmApp.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wxmApp.hpp; sourceTree = "<group>"; };
-		1F66C28429CF522400927192 /* wxmApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wxmApp.cpp; sourceTree = "<group>"; };
-		1F66C28629CF522400927192 /* wxmView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = wxmView.hpp; sourceTree = "<group>"; };
-		1F66C28829CF522400927192 /* wxmView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = wxmView.cpp; sourceTree = "<group>"; };
-		1F66C28A29CF522400927192 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1FA2A3C829CFD96F009BDC7D /* forty_vc7.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = forty_vc7.vcproj; sourceTree = "<group>"; };
+		1FA2A3C929CFD96F009BDC7D /* about.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.htm; sourceTree = "<group>"; };
+		1FA2A3CA29CFD96F009BDC7D /* pile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pile.h; sourceTree = "<group>"; };
+		1FA2A3CB29CFD96F009BDC7D /* scoredg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scoredg.h; sourceTree = "<group>"; };
+		1FA2A3CC29CFD96F009BDC7D /* makefile.unx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = makefile.unx; sourceTree = "<group>"; };
+		1FA2A3CD29CFD96F009BDC7D /* Makefile.in */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Makefile.in; sourceTree = "<group>"; };
+		1FA2A3CE29CFD96F009BDC7D /* pictures.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = pictures.xpm; sourceTree = "<group>"; };
+		1FA2A3CF29CFD96F009BDC7D /* forty.bkl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = forty.bkl; sourceTree = "<group>"; };
+		1FA2A3D029CFD970009BDC7D /* canvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = canvas.cpp; sourceTree = "<group>"; };
+		1FA2A3D129CFD970009BDC7D /* game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = game.h; sourceTree = "<group>"; };
+		1FA2A3D229CFD970009BDC7D /* forty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = forty.h; sourceTree = "<group>"; };
+		1FA2A3D329CFD970009BDC7D /* playerdg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = playerdg.cpp; sourceTree = "<group>"; };
+		1FA2A3D429CFD970009BDC7D /* cards.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = cards.ico; sourceTree = "<group>"; };
+		1FA2A3D529CFD970009BDC7D /* pile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pile.cpp; sourceTree = "<group>"; };
+		1FA2A3D629CFD970009BDC7D /* canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = canvas.h; sourceTree = "<group>"; };
+		1FA2A3D729CFD970009BDC7D /* makefile.gcc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = makefile.gcc; sourceTree = "<group>"; };
+		1FA2A3D829CFD970009BDC7D /* forty.rc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = forty.rc; sourceTree = "<group>"; };
+		1FA2A3D929CFD970009BDC7D /* forty_vc9.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = forty_vc9.vcproj; sourceTree = "<group>"; };
+		1FA2A3DA29CFD971009BDC7D /* descrip.mms */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = descrip.mms; sourceTree = "<group>"; };
+		1FA2A3DB29CFD971009BDC7D /* forty_vc8.vcproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = forty_vc8.vcproj; sourceTree = "<group>"; };
+		1FA2A3DC29CFD971009BDC7D /* forty.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = forty.xpm; sourceTree = "<group>"; };
+		1FA2A3DD29CFD971009BDC7D /* makefile.vc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = makefile.vc; sourceTree = "<group>"; };
+		1FA2A3DE29CFD971009BDC7D /* card.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = card.cpp; sourceTree = "<group>"; };
+		1FA2A3DF29CFD971009BDC7D /* playerdg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = playerdg.h; sourceTree = "<group>"; };
+		1FA2A3E029CFD971009BDC7D /* game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game.cpp; sourceTree = "<group>"; };
+		1FA2A3E129CFD971009BDC7D /* readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.txt; sourceTree = "<group>"; };
+		1FA2A3E229CFD971009BDC7D /* card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = card.h; sourceTree = "<group>"; };
+		1FA2A3E329CFD971009BDC7D /* forty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = forty.cpp; sourceTree = "<group>"; };
+		1FA2A3E429CFD971009BDC7D /* scorefil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scorefil.cpp; sourceTree = "<group>"; };
+		1FA2A3E529CFD971009BDC7D /* scoredg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = scoredg.cpp; sourceTree = "<group>"; };
+		1FA2A3E629CFD972009BDC7D /* symbols.xpm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = symbols.xpm; sourceTree = "<group>"; };
+		1FA2A3E729CFD972009BDC7D /* scorefil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scorefil.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,11 +111,38 @@
 		1F66C28129CF522400927192 /* hello-forty */ = {
 			isa = PBXGroup;
 			children = (
-				1F66C28229CF522400927192 /* wxmApp.hpp */,
-				1F66C28429CF522400927192 /* wxmApp.cpp */,
-				1F66C28629CF522400927192 /* wxmView.hpp */,
-				1F66C28829CF522400927192 /* wxmView.cpp */,
-				1F66C28A29CF522400927192 /* main.cpp */,
+				1FA2A3C929CFD96F009BDC7D /* about.htm */,
+				1FA2A3D029CFD970009BDC7D /* canvas.cpp */,
+				1FA2A3D629CFD970009BDC7D /* canvas.h */,
+				1FA2A3DE29CFD971009BDC7D /* card.cpp */,
+				1FA2A3E229CFD971009BDC7D /* card.h */,
+				1FA2A3D429CFD970009BDC7D /* cards.ico */,
+				1FA2A3DA29CFD971009BDC7D /* descrip.mms */,
+				1FA2A3C829CFD96F009BDC7D /* forty_vc7.vcproj */,
+				1FA2A3DB29CFD971009BDC7D /* forty_vc8.vcproj */,
+				1FA2A3D929CFD970009BDC7D /* forty_vc9.vcproj */,
+				1FA2A3CF29CFD96F009BDC7D /* forty.bkl */,
+				1FA2A3E329CFD971009BDC7D /* forty.cpp */,
+				1FA2A3D229CFD970009BDC7D /* forty.h */,
+				1FA2A3D829CFD970009BDC7D /* forty.rc */,
+				1FA2A3DC29CFD971009BDC7D /* forty.xpm */,
+				1FA2A3E029CFD971009BDC7D /* game.cpp */,
+				1FA2A3D129CFD970009BDC7D /* game.h */,
+				1FA2A3D729CFD970009BDC7D /* makefile.gcc */,
+				1FA2A3CD29CFD96F009BDC7D /* Makefile.in */,
+				1FA2A3CC29CFD96F009BDC7D /* makefile.unx */,
+				1FA2A3DD29CFD971009BDC7D /* makefile.vc */,
+				1FA2A3CE29CFD96F009BDC7D /* pictures.xpm */,
+				1FA2A3D529CFD970009BDC7D /* pile.cpp */,
+				1FA2A3CA29CFD96F009BDC7D /* pile.h */,
+				1FA2A3D329CFD970009BDC7D /* playerdg.cpp */,
+				1FA2A3DF29CFD971009BDC7D /* playerdg.h */,
+				1FA2A3E129CFD971009BDC7D /* readme.txt */,
+				1FA2A3E529CFD971009BDC7D /* scoredg.cpp */,
+				1FA2A3CB29CFD96F009BDC7D /* scoredg.h */,
+				1FA2A3E429CFD971009BDC7D /* scorefil.cpp */,
+				1FA2A3E729CFD972009BDC7D /* scorefil.h */,
+				1FA2A3E629CFD972009BDC7D /* symbols.xpm */,
 			);
 			path = "hello-forty";
 			sourceTree = "<group>";
@@ -132,8 +205,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F66C28729CF522400927192 /* wxmView.hpp in Resources */,
-				1F66C28329CF522400927192 /* wxmApp.hpp in Resources */,
+				1FA2A3FB29CFD972009BDC7D /* readme.txt in Resources */,
+				1FA2A3ED29CFD972009BDC7D /* forty.bkl in Resources */,
+				1FA2A3F429CFD972009BDC7D /* forty_vc9.vcproj in Resources */,
+				1FA2A3F029CFD972009BDC7D /* cards.ico in Resources */,
+				1FA2A3EA29CFD972009BDC7D /* makefile.unx in Resources */,
+				1FA2A3E829CFD972009BDC7D /* forty_vc7.vcproj in Resources */,
+				1FA2A3EB29CFD972009BDC7D /* Makefile.in in Resources */,
+				1FA2A3FF29CFD972009BDC7D /* symbols.xpm in Resources */,
+				1FA2A3F629CFD972009BDC7D /* forty_vc8.vcproj in Resources */,
+				1FA2A3F229CFD972009BDC7D /* makefile.gcc in Resources */,
+				1FA2A3EC29CFD972009BDC7D /* pictures.xpm in Resources */,
+				1FA2A3F329CFD972009BDC7D /* forty.rc in Resources */,
+				1FA2A3F829CFD972009BDC7D /* makefile.vc in Resources */,
+				1FA2A3E929CFD972009BDC7D /* about.htm in Resources */,
+				1FA2A3F729CFD972009BDC7D /* forty.xpm in Resources */,
+				1FA2A3F529CFD972009BDC7D /* descrip.mms in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,9 +231,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1F66C28529CF522400927192 /* wxmApp.cpp in Sources */,
-				1F66C28929CF522400927192 /* wxmView.cpp in Sources */,
-				1F66C28B29CF522400927192 /* main.cpp in Sources */,
+				1FA2A3FC29CFD972009BDC7D /* forty.cpp in Sources */,
+				1FA2A3EE29CFD972009BDC7D /* canvas.cpp in Sources */,
+				1FA2A3EF29CFD972009BDC7D /* playerdg.cpp in Sources */,
+				1FA2A3FE29CFD972009BDC7D /* scoredg.cpp in Sources */,
+				1FA2A3F129CFD972009BDC7D /* pile.cpp in Sources */,
+				1FA2A3FA29CFD972009BDC7D /* game.cpp in Sources */,
+				1FA2A3F929CFD972009BDC7D /* card.cpp in Sources */,
+				1FA2A3FD29CFD972009BDC7D /* scorefil.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
