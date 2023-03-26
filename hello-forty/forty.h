@@ -75,10 +75,10 @@ private:
 class FortyAboutDialog: public wxDialog {
 public:
     // constructors and destructors
-    FortyAboutDialog( wxWindow *parent, wxWindowID id, const wxString &title,
+    FortyAboutDialog(wxWindow *parent, wxWindowID id, const wxString &title,
         const wxPoint& pos = wxDefaultPosition,
         const wxSize& size = wxDefaultSize,
-        long style = wxDEFAULT_DIALOG_STYLE );
+        long style = wxDEFAULT_DIALOG_STYLE);
 
     bool AddControls(wxWindow* parent);
 };

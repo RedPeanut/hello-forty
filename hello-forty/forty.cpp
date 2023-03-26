@@ -175,7 +175,7 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
     m_canvas = new FortyCanvas(this, wxDefaultPosition, size);
 
     wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
-    topsizer->Add( m_canvas, 1, wxEXPAND | wxALL, 0);
+    topsizer->Add(m_canvas, 1, wxEXPAND | wxALL, 0);
     SetSizer(topsizer);
 
 #if wxUSE_STATUSBAR
@@ -186,7 +186,7 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
 }
 
 void FortyFrame::OnCloseWindow(wxCloseEvent& event) {
-    if (m_canvas->OnCloseCanvas() ) {
+    if (m_canvas->OnCloseCanvas()) {
         this->Destroy();
     }
     else
@@ -262,8 +262,8 @@ void FortyFrame::ToggleCardSize(wxCommandEvent& event) {
 // stAboutDialog
 //----------------------------------------------------------------------------
 
-FortyAboutDialog::FortyAboutDialog( wxWindow *parent, wxWindowID id, const wxString &title,
-    const wxPoint &position, const wxSize& size, long style ) :
+FortyAboutDialog::FortyAboutDialog(wxWindow *parent, wxWindowID id, const wxString &title,
+    const wxPoint &position, const wxSize& size, long style) :
     wxDialog(parent, id, title, position, size, style) {
     AddControls(this);
 
@@ -279,9 +279,9 @@ bool FortyAboutDialog::AddControls(wxWindow* parent) {
         wxTextFile file(htmlFile);
         if (file.Exists()) {
             file.Open();
-            for ( htmlText = file.GetFirstLine();
+            for (htmlText = file.GetFirstLine();
                   !file.Eof();
-                  htmlText << file.GetNextLine() << wxT("\n") ) ;
+                  htmlText << file.GetNextLine() << wxT("\n")) ;
         }
     }
 
