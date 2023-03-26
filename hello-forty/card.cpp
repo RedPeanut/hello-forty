@@ -85,9 +85,7 @@ Card::Card(int value, WayUp way_up) :
         }
         m_pipValue = 1 + (value - 1) % 13;
         m_status = true;
-    }
-    else
-    {
+    } else {
         m_status = false;
     }
 } // Card::Card()
@@ -161,9 +159,7 @@ void Card::Draw(wxDC& dc, int x, int y) {
                 m_width - 8, m_height - 8,
                 2
                 );
-    }
-    else
-    {
+    } else {
         wxMemoryDC memoryDC;
 
         memoryDC.SelectObject(*m_symbolBmap);
@@ -196,9 +192,7 @@ void Card::Draw(wxDC& dc, int x, int y) {
             valueheight = 10;
             valuewidth = 9;
             valuepos = 50;
-        }
-        else
-        {
+        } else {
             pipsize = 7;
             pippos = 0;
             valueheight = 7;

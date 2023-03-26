@@ -97,9 +97,7 @@ void FortyCanvas::OnDraw(wxDC& dc) {
             m_playerDialog->Destroy();
             m_playerDialog = 0;
             Refresh(false);
-        }
-        else
-        {
+        } else {
             // user cancelled the dialog - exit the app
             ((wxFrame*)GetParent())->Close(true);
         }
@@ -126,9 +124,7 @@ void FortyCanvas::ShowPlayerDialog() {
             m_playerDialog->Destroy();
             m_playerDialog = 0;
             Refresh(false);
-        }
-        else
-        {
+        } else {
             // user cancelled the dialog - exit the app
             ((wxFrame*)GetParent())->Close(true);
         }
@@ -182,9 +178,7 @@ void FortyCanvas::OnMouseEvent(wxMouseEvent& event) {
         if (m_rightBtnUndo) {
             if (event.ControlDown() || event.ShiftDown()) {
                 m_game->Redo(dc);
-            }
-            else
-            {
+            } else {
                 m_game->Undo(dc);
             }
         }
@@ -203,9 +197,7 @@ void FortyCanvas::SetCursorStyle(int x, int y) {
     // the card under the cursor can go somewhere
     if (m_game->CanYouGo(x, y) && m_helpingHand) {
         SetCursor(* m_handCursor);
-    }
-    else
-    {
+    } else {
         SetCursor(* m_arrowCursor);
     }
 

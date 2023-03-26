@@ -103,20 +103,14 @@ void PlayerSelectionDialog::ButtonCallback(wxCommandEvent& event) {
         if ( !name.empty() ) {
             if (name.Contains(wxT('@'))) {
                 wxMessageBox(wxT("Names should not contain the '@' character"), wxT("Forty Thieves"));
-            }
-            else
-            {
+            } else {
                 m_player = name;
                 EndModal(wxID_OK);
             }
-        }
-        else
-        {
+        } else {
              wxMessageBox(wxT("Please enter your name"), wxT("Forty Thieves"));
         }
-    }
-    else
-    {
+    } else {
         m_player = wxEmptyString;
         EndModal(wxID_CANCEL);
     }

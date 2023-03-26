@@ -94,9 +94,7 @@ void ScoreFile::ReadPlayersScore(
         if (check != CalcCheck(player, myGames, myWins, myScore)) {
             wxMessageBox(wxT("Score file corrupted"), wxT("Warning"),
                                      wxOK | wxICON_EXCLAMATION);
-        }
-        else
-        {
+        } else {
             games = myGames;
             wins = myWins;
             score = myScore;

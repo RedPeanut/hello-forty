@@ -144,9 +144,7 @@ void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
 
         // when we do a move any moves in redo buffer are discarded
         m_redoIndex = m_moveIndex;
-    }
-    else
-    {
+    } else {
         wxMessageBox(wxT("Game::DoMove() Undo buffer full"), wxT("Debug message"),
                wxOK | wxICON_EXCLAMATION);
     }
@@ -176,9 +174,7 @@ void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
             wxT("Well Done, You have won!"), wxYES_NO | wxICON_QUESTION) == wxYES) {
             Deal();
             canvas->Refresh();
-        }
-        else
-        {
+        } else {
             // user cancelled the dialog - exit the app
             ((wxFrame*)canvas->GetParent())->Close(true);
         }
@@ -390,9 +386,7 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y) {
     // Double click on m_pack is the same as left button down
     if (pile == m_pack) {
         LButtonDown(dc, x, y);
-    }
-    else
-    {
+    } else {
         Card* card = pile->GetTopCard();
 
         if (card) {
@@ -537,9 +531,7 @@ void Game::LButtonUp(wxDC& dc, int x, int y) {
             if (nearestPile != m_srcPile) {
                 DoMove(dc, m_srcPile, nearestPile);
             }
-        }
-        else
-        {
+        } else {
             // Return card to src pile
             m_srcPile->AddCard(dc, m_liftedCard);
         }
@@ -589,9 +581,7 @@ void Game::MouseMove(wxDC& dc, int mx, int my) {
                        &memoryDC, dx, dy, wxCOPY);
                 memoryDC.Blit(0, CardHeight - dy, CardWidth - dx, dy,
                        &dc, m_xPos + dx, m_yPos + CardHeight, wxCOPY);
-            }
-            else
-            {
+            } else {
                 // dy < 0
                 dc.Blit(m_xPos + dx, m_yPos + dy + CardHeight, CardWidth - dx, -dy,
                        &memoryDC, dx, CardHeight + dy, wxCOPY);
@@ -602,9 +592,7 @@ void Game::MouseMove(wxDC& dc, int mx, int my) {
             }
             memoryDC.Blit(CardWidth - dx, 0, dx, CardHeight,
                    &dc, m_xPos + CardWidth, m_yPos + dy, wxCOPY);
-        }
-        else
-        {
+        } else {
             // dx < 0
             dc.Blit(m_xPos + CardWidth + dx, m_yPos, -dx, CardHeight,
                    &memoryDC, CardWidth + dx, 0, wxCOPY);
@@ -614,9 +602,7 @@ void Game::MouseMove(wxDC& dc, int mx, int my) {
                        &memoryDC, 0, dy, wxCOPY);
                 memoryDC.Blit(-dx, CardHeight - dy, CardWidth + dx, dy,
                        &dc, m_xPos, m_yPos + CardHeight, wxCOPY);
-            }
-            else
-            {
+            } else {
                 // dy < 0
                 dc.Blit(m_xPos, m_yPos + CardHeight + dy, CardWidth + dx, -dy,
                        &memoryDC, 0, CardHeight + dy, wxCOPY);
@@ -704,9 +690,7 @@ void Pack::Redraw(wxDC& dc) {
 void Pack::AddCard(Card* card) {
     if (card == m_cards[m_topCard + 1]) {
         m_topCard++;
-    }
-    else
-    {
+    } else {
         wxMessageBox(wxT("Pack::AddCard() Undo error"), wxT("Forty Thieves: Warning"),
            wxOK | wxICON_EXCLAMATION);
     }
@@ -737,9 +721,7 @@ bool Base::AcceptCard(Card* card) {
             m_cards[m_topCard]->GetPipValue() - 1 == card->GetPipValue()) {
             retval = true;
         }
-    }
-    else
-    {
+    } else {
         // pile is empty - ACCEPT
         retval = true;
     }
@@ -782,9 +764,7 @@ void Discard::Redraw(wxDC& dc) {
     if (m_topCard >= 0) {
         if (m_dx == 0 && m_dy == 0) {
             m_cards[m_topCard]->Draw(dc, m_x, m_y);
-        }
-        else
-        {
+        } else {
             int x = m_x;
             int y = m_y;
             for (int i = 0; i <= m_topCard; i++) {
@@ -797,9 +777,7 @@ void Discard::Redraw(wxDC& dc) {
                 }
             }
         }
-    }
-    else
-    {
+    } else {
         Card::DrawNullCard(dc, m_x, m_y);
     }
 }
@@ -813,9 +791,7 @@ void Discard::GetTopCardPos(int& x, int& y) {
     else if (m_topCard > 31) {
         x = m_x + m_dx * (m_topCard - 32);
         y = m_y + CardHeight / 3;
-    }
-    else
-    {
+    } else {
         x = m_x + m_dx * m_topCard;
         y = m_y;
     }
@@ -827,9 +803,7 @@ Card* Discard::RemoveTopCard(wxDC& dc, int m_xOffset, int m_yOffset) {
 
     if (m_topCard <= 31) {
         card = Pile::RemoveTopCard(dc, m_xOffset, m_yOffset);
-    }
-    else
-    {
+    } else {
         int topX, topY, x, y;
         GetTopCardPos(topX, topY);
         card = Pile::RemoveTopCard();
