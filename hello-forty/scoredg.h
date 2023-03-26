@@ -12,8 +12,7 @@
 #ifndef _SCOREDG_H_
 #define _SCOREDG_H_
 
-class ScoreDialog : public wxDialog
-{
+class ScoreDialog : public wxDialog {
 public:
     ScoreDialog(wxWindow* parent, ScoreFile* file);
     virtual ~ScoreDialog(){}

@@ -12,8 +12,7 @@
 #ifndef _PLAYERDG_H_
 #define _PLAYERDG_H_
 
-class PlayerSelectionDialog : public wxDialog
-{
+class PlayerSelectionDialog : public wxDialog {
 public:
     PlayerSelectionDialog(wxWindow* parent, ScoreFile* file);
     virtual ~PlayerSelectionDialog(){}

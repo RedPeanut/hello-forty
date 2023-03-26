@@ -12,8 +12,7 @@
 #ifndef _FORTY_H_
 #define _FORTY_H_
 
-class FortyApp: public wxApp
-{
+class FortyApp: public wxApp {
 public:
     FortyApp(){}
     virtual ~FortyApp();
@@ -34,8 +33,7 @@ private:
 wxDECLARE_APP(FortyApp);
 
 class FortyCanvas;
-class FortyFrame: public wxFrame
-{
+class FortyFrame: public wxFrame {
 public:
     FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos, const wxSize& size, bool largecards);
     virtual ~FortyFrame(){}
@@ -74,8 +72,7 @@ private:
 // stAboutDialog
 //----------------------------------------------------------------------------
 
-class FortyAboutDialog: public wxDialog
-{
+class FortyAboutDialog: public wxDialog {
 public:
     // constructors and destructors
     FortyAboutDialog( wxWindow *parent, wxWindowID id, const wxString &title,

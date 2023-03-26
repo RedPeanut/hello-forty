@@ -17,8 +17,7 @@ class Game;
 class ScoreFile;
 class PlayerSelectionDialog;
 
-class FortyCanvas: public wxScrolledWindow
-{
+class FortyCanvas: public wxScrolledWindow {
 public:
     FortyCanvas(wxWindow* parent, const wxPoint& pos, const wxSize& size);
     virtual ~FortyCanvas();
