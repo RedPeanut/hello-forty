@@ -138,11 +138,11 @@ ScoreDialog::ScoreDialog(wxWindow* parent, ScoreFile* file) :
             average = (2 * score + games) / (2 * games);
         }
         list->SetCellValue(i,0,players[i]);
-        string_value.Printf( wxT("%u"), wins );
+        string_value.Printf(wxT("%u"), wins);
         list->SetCellValue(i,1,string_value);
-        string_value.Printf( wxT("%u"), games );
+        string_value.Printf(wxT("%u"), games);
         list->SetCellValue(i,2,string_value);
-        string_value.Printf( wxT("%u"), average );
+        string_value.Printf(wxT("%u"), average);
         list->SetCellValue(i,3,string_value);
     }
     list->SetColLabelValue(0, wxT("Players"));
@@ -166,13 +166,13 @@ ScoreDialog::ScoreDialog(wxWindow* parent, ScoreFile* file) :
     list->SetInitialSize(sz);
 
     // locate and resize with sizers
-    wxBoxSizer *topsizer = new wxBoxSizer( wxVERTICAL );
-    topsizer->Add( list, 1, wxALL|wxGROW, 10 );
+    wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
+    topsizer->Add(list, 1, wxALL|wxGROW, 10);
     wxButton *button = new wxButton(this, wxID_OK);
-    topsizer->Add( button, 0, wxALIGN_CENTER_HORIZONTAL|wxALL , 10 );
+    topsizer->Add(button, 0, wxALIGN_CENTER_HORIZONTAL|wxALL , 10);
     button->SetFocus();
 
-    SetSizer( topsizer );
+    SetSizer(topsizer);
 
     GetSizer()->Fit(this);
     GetSizer()->SetSizeHints(this);

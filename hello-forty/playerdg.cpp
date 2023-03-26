@@ -54,19 +54,19 @@ PlayerSelectionDialog::PlayerSelectionDialog(
     m_OK = new wxButton(this, wxID_OK);
     m_cancel = new wxButton(this, wxID_CANCEL);
 
-    wxBoxSizer *button_sizer = new wxBoxSizer( wxHORIZONTAL );
-    button_sizer->Add( m_OK, 0, wxALL, 10 );
-    button_sizer->Add( m_cancel, 0, wxALL, 10 );
+    wxBoxSizer *button_sizer = new wxBoxSizer(wxHORIZONTAL);
+    button_sizer->Add(m_OK, 0, wxALL, 10);
+    button_sizer->Add(m_cancel, 0, wxALL, 10);
 
-    wxBoxSizer *topsizer = new wxBoxSizer( wxVERTICAL );
-    topsizer->Add( msg, 0, wxALL , 10 );
-    topsizer->Add( list, 1, wxEXPAND | wxLEFT | wxRIGHT, 10 );
-    topsizer->Add( m_textField, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, 10 );
-    topsizer->Add( button_sizer, 0, wxALIGN_LEFT );
+    wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
+    topsizer->Add(msg, 0, wxALL , 10);
+    topsizer->Add(list, 1, wxEXPAND | wxLEFT | wxRIGHT, 10);
+    topsizer->Add(m_textField, 0, wxEXPAND | wxLEFT | wxRIGHT | wxTOP, 10);
+    topsizer->Add(button_sizer, 0, wxALIGN_LEFT);
 
-    SetSizer( topsizer );
+    SetSizer(topsizer);
 
-    topsizer->SetSizeHints( this );
+    topsizer->SetSizeHints(this);
 
     CentreOnParent();
 
@@ -100,7 +100,7 @@ void PlayerSelectionDialog::SelectCallback(wxCommandEvent& event) {
 void PlayerSelectionDialog::ButtonCallback(wxCommandEvent& event) {
     if (event.GetId() == wxID_OK) {
         wxString name = m_textField->GetValue();
-        if ( !name.empty() ) {
+        if (!name.empty()) {
             if (name.Contains(wxT('@'))) {
                 wxMessageBox(wxT("Names should not contain the '@' character"), wxT("Forty Thieves"));
             } else {

@@ -31,7 +31,7 @@ ScoreFile::~ScoreFile() {
 }
 
 
-void ScoreFile::GetPlayerList( wxArrayString &list ) {
+void ScoreFile::GetPlayerList(wxArrayString &list) {
     m_config->SetPath(wxT("/Players"));
     int length = m_config->GetNumberOfGroups();
 
@@ -40,9 +40,9 @@ void ScoreFile::GetPlayerList( wxArrayString &list ) {
     wxString player;
     long index;
     if (m_config->GetFirstGroup(player, index)) {
-         list.Add( player );
+         list.Add(player);
         while (m_config->GetNextGroup(player, index)) {
-              list.Add( player );
+              list.Add(player);
         }
     }
 }

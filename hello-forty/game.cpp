@@ -293,7 +293,7 @@ void Game::Redraw(wxDC& dc) {
         // Initialise the card bitmap to the background colour
         wxMemoryDC memoryDC;
         memoryDC.SelectObject(*m_bmapCard);
-        memoryDC.SetPen( *wxTRANSPARENT_PEN );
+        memoryDC.SetPen(*wxTRANSPARENT_PEN);
         memoryDC.SetBrush(FortyApp::BackgroundBrush());
         memoryDC.DrawRectangle(0, 0, CardWidth, CardHeight);
         memoryDC.SelectObject(*m_bmap);
@@ -397,7 +397,7 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y) {
             if (card->GetPipValue() == 1) {
                 for(i = 0; i < 4; i++) {
                     Card* m_topCard = m_foundations[i]->GetTopCard();
-                    if ( m_topCard ) {
+                    if (m_topCard) {
                         if (m_topCard->GetSuit() == card->GetSuit() &&
                             m_foundations[i + 4] != pile &&
                             m_foundations[i + 4]->GetTopCard() == 0) {
@@ -680,7 +680,7 @@ void Pack::Redraw(wxDC& dc) {
     wxString str;
     str.Printf(wxT("%d  "), m_topCard + 1);
 
-    dc.SetBackgroundMode( wxBRUSHSTYLE_SOLID );
+    dc.SetBackgroundMode(wxBRUSHSTYLE_SOLID);
     dc.SetTextBackground(FortyApp::BackgroundColour());
     dc.SetTextForeground(FortyApp::TextColour());
     dc.DrawText(str, m_x + CardWidth + 5, m_y + CardHeight / 2);

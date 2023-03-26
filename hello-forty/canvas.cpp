@@ -47,7 +47,7 @@ FortyCanvas::FortyCanvas(wxWindow* parent, const wxPoint& pos, const wxSize& siz
     m_arrowCursor = new wxCursor(wxCURSOR_ARROW);
 
     wxString name = wxTheApp->GetAppName();
-    if ( name.empty() ) name = wxT("forty");
+    if (name.empty()) name = wxT("forty");
     m_scoreFile = new ScoreFile(name);
     m_game = new Game(0, 0, 0);
     m_game->Deal();
@@ -88,7 +88,7 @@ void FortyCanvas::OnDraw(wxDC& dc) {
         m_playerDialog = new PlayerSelectionDialog(this, m_scoreFile);
         m_playerDialog->ShowModal();
         m_player = m_playerDialog->GetPlayersName();
-        if ( !m_player.empty() ) {
+        if (!m_player.empty()) {
             // user entered a name - lookup their score
             int wins, games, score;
             m_scoreFile->ReadPlayersScore(m_player, wins, games, score);
@@ -112,7 +112,7 @@ void FortyCanvas::ShowPlayerDialog() {
         m_playerDialog = new PlayerSelectionDialog(this, m_scoreFile);
         m_playerDialog->ShowModal();
         m_player = m_playerDialog->GetPlayersName();
-        if ( !m_player.empty() ) {
+        if (!m_player.empty()) {
             // user entered a name - lookup their score
             int wins, games, score;
             m_scoreFile->ReadPlayersScore(m_player, wins, games, score);

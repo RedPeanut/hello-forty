@@ -142,7 +142,7 @@ void Card::Erase(wxDC& dc, int x, int y) {
 //| result in the wrong symbols being displayed.                |
 //+-------------------------------------------------------------+
 void Card::Draw(wxDC& dc, int x, int y) {
-    wxBrush backgroundBrush( dc.GetBackground() );
+    wxBrush backgroundBrush(dc.GetBackground());
     dc.SetBrush(* wxWHITE_BRUSH);
     dc.SetPen(* wxBLACK_PEN);
         dc.DrawRoundedRectangle(x, y, m_width, m_height, 4);
@@ -512,7 +512,7 @@ void Card::Draw(wxDC& dc, int x, int y) {
         }
 
     }
-    dc.SetBackground( backgroundBrush );
+    dc.SetBackground(backgroundBrush);
 } // Card:Draw()
 
 
