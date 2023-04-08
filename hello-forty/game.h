@@ -109,6 +109,7 @@ private:
     } m_moves[MaxMoves];
     int m_moveIndex; // current position in undo/redo buffer
     int m_redoIndex; // max move index available for redo
+    int m_numMoves; // 
 
     // the various piles of cards
     Pack* m_pack;

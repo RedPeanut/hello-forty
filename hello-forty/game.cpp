@@ -28,6 +28,7 @@ Game::Game(int wins, int games, int score) :
     m_inPlay(false),
     m_moveIndex(0),
     m_redoIndex(0),
+    m_numMoves(0),
     m_bmap(0),
     m_bmapCard(0) {
     int i;
@@ -111,6 +112,7 @@ void Game::NewPlayer(int wins, int games, int score) {
 // Undo the last move
 void Game::Undo(wxDC& dc) {
     if(m_moveIndex > 0) {
+        m_numMoves++;
         m_moveIndex--;
         Card* card = m_moves[m_moveIndex].dest->RemoveTopCard(dc);
         m_moves[m_moveIndex].src->AddCard(dc, card);
@@ -129,6 +131,7 @@ void Game::Redo(wxDC& dc) {
         m_moves[m_moveIndex].dest->AddCard(dc, card);
         DisplayScore(dc);
         m_moveIndex++;
+        m_numMoves++;
     }
 }
 
@@ -141,6 +144,7 @@ void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
         m_moves[m_moveIndex].src = src;
         m_moves[m_moveIndex].dest = dest;
         m_moveIndex++;
+        m_numMoves++;
 
         // when we do a move any moves in redo buffer are discarded
         m_redoIndex = m_moveIndex;
@@ -232,6 +236,11 @@ void Game::DisplayScore(wxDC& dc) {
     str.Printf(wxT("%d"), average);
     dc.DrawText(wxT("Average score:"), x, y);
     dc.DrawText(str, x + w, y);
+    y += h;
+
+    str.Printf(wxT("%d"), m_numMoves);
+    dc.DrawText(wxT("Moves:"), x, y);
+    dc.DrawText(str, x + w, y);
 }
 
 
@@ -242,6 +251,8 @@ void Game::Deal() {
 
     // Reset all the piles, the undo buffer and shuffle the m_pack
     m_moveIndex = 0;
+    m_numMoves = 0;
+
     m_pack->ResetPile();
     for(i = 0; i < 5; i++) {
         m_pack->Shuffle();
