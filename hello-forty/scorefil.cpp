@@ -67,8 +67,7 @@ long ScoreFile::CalcCheck(const wxString& name, int p1, int p2, int p3) {
     return check;
 }
 
-wxString ScoreFile::GetPreviousPlayer() const
-{
+wxString ScoreFile::GetPreviousPlayer() const {
     wxString result;
     m_config->SetPath(wxT("/General"));
     m_config->Read(wxT("LastPlayer"), &result);

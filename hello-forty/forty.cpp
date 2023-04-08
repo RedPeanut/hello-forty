@@ -57,7 +57,6 @@ FortyApp::~FortyApp() {
     delete m_backgroundBrush;
     delete Card::m_symbolBmap;
     delete Card::m_pictureBmap;
-
 }
 
 bool FortyApp::OnInit() {
@@ -69,7 +68,7 @@ bool FortyApp::OnInit() {
 
     wxSize size(668,510);
 
-    if((argc > 1) && (!wxStrcmp(argv[1],wxT("-L")))) {
+    if((argc > 1) && (!wxStrcmp(argv[1], wxT("-L")))) {
         largecards = true;
         size = wxSize(1000,750);
     }

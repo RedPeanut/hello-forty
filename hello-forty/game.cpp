@@ -67,8 +67,8 @@ void Game::Layout() {
     m_discard->SetPos(2, 2 + 5 * (CardHeight + 2));
 
     for(i = 0; i < 8; i++) {
-                m_foundations[i]->SetPos(2 + (i / 4) * (CardWidth + 2),
-                                         2 + (i % 4) * (CardHeight + 2));
+        m_foundations[i]->SetPos(2 + (i / 4) * (CardWidth + 2),
+                                2 + (i % 4) * (CardHeight + 2));
     }
 
     for(i = 0; i < 10; i++) {
