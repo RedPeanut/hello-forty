@@ -307,23 +307,23 @@ bool FortyAboutDialog::AddControls(wxWindow* parent) {
 
     //// Start of sizer-based control creation
 
-    wxSizer *item0 = new wxBoxSizer(wxVERTICAL);
+    wxSizer *sizer = new wxBoxSizer(wxVERTICAL);
 
-    wxWindow *item1 = parent->FindWindow(ID_ABOUT_HTML_WINDOW);
-    wxASSERT(item1);
-    item0->Add(item1, 0, wxALIGN_CENTRE|wxALL, 5);
+    wxWindow *aboutBtn = parent->FindWindow(ID_ABOUT_HTML_WINDOW);
+    wxASSERT(aboutBtn);
+    sizer->Add(aboutBtn, 0, wxALIGN_CENTRE|wxALL, 5);
 
-    wxButton *item2 = new wxButton(parent, wxID_CLOSE);
-    item2->SetDefault();
-    item2->SetFocus();
+    wxButton *closeBtn = new wxButton(parent, wxID_CLOSE);
+    closeBtn->SetDefault();
+    closeBtn->SetFocus();
     SetAffirmativeId(wxID_CLOSE);
 
-    item0->Add(item2, 0, wxALIGN_RIGHT|wxALL, 5);
+    sizer->Add(closeBtn, 0, wxALIGN_RIGHT|wxALL, 5);
 
-    parent->SetSizer(item0);
+    parent->SetSizer(sizer);
     parent->Layout();
-    item0->Fit(parent);
-    item0->SetSizeHints(parent);
+    sizer->Fit(parent);
+    sizer->SetSizeHints(parent);
 #endif
 
     return true;
