@@ -23,6 +23,7 @@
 #include <string.h>
 #include "forty.h"
 #include "game.h"
+#include "util.h"
 
 Game::Game(int wins, int games, int score) :
     m_inPlay(false),
@@ -641,14 +642,46 @@ void Game::MouseMove(wxDC& dc, int mx, int my) {
 // The Pack class: holds the two decks of cards //
 //----------------------------------------------//
 Pack::Pack(int x, int y) : Pile(x, y, 0, 0) {
-    for(m_topCard = 0; m_topCard < NumCards; m_topCard++) {
-        m_cards[m_topCard] = new Card(1 + m_topCard / 2, facedown);
+
+    // wxPrintf("Pack::ctor() is called...\n");
+
+    const std::string foundation[] = {"10S","JH","AC","7H","5S","QD","JS","7D","6C","2H","AH","10H","QH","10C","8S","4D","7D","4C","9S","AS","4S","9D","6D","9H","KD","KC","9S","3C","2D","3H","3C","2D","QC","10D","QS","10S","6H","8C","9C","9D"};
+    const std::string pack[] = {"2C","5D","QH","4H","7S","6S","2S","8H","AS","AC","6H","7C","8C","4D","JH","3D","6D","JS","JC","10C","10H","3H","AH","8D","AD","5H","9C","4H","KD","2C","KC","3S","4S","4C","3S","JD","KS","8D","3D","9H","QD","8S","6S","5H","KH","10D","QC","7H","5C","8H","7C","5S","2S","JC","2H","AD","JD","KH","6C","QS","KS","7S","5D","5C"};
+
+    std::string value;
+    std::string suit;
+    int n = 0;
+    for(int i = sizeof(pack)/sizeof(pack[0])-1; i >= 0; i--, n++) {
+        if(pack[i].length() == 3) {
+            value = pack[i].substr(0,2);
+            suit = pack[i].substr(2,1);
+        } else { //if(pack[i].length() == 2)
+            value = pack[i].substr(0,1);
+            suit = pack[i].substr(1,1);
+        }
+        m_cards[n] = new Card(Util::getValue(value), Util::getSuit(suit), facedown);
     }
-    m_topCard = NumCards - 1;
+
+    for(int i = sizeof(foundation)/sizeof(foundation[0])-1; i >= 0; i--, n++) {
+        if(foundation[i].length() == 3) {
+            value = foundation[i].substr(0,2);
+            suit = foundation[i].substr(2,1);
+        } else { //if(pack[i].length() == 2)
+            value = foundation[i].substr(0,1);
+            suit = foundation[i].substr(1,1);
+        }
+        m_cards[n] = new Card(Util::getValue(value), Util::getSuit(suit), facedown);
+    }
+
+    m_topCard = n - 1;
+    // wxPrintf("m_topCard = %d\n", m_topCard);
 }
 
 
 void Pack::Shuffle() {
+
+    return;
+
     Card* temp[NumCards];
     int i;
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F8C58C829E1943100DB78CB /* util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1F8C58C629E1943100DB78CB /* util.cpp */; };
 		1FA2A3E929CFD972009BDC7D /* about.htm in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3C929CFD96F009BDC7D /* about.htm */; };
 		1FA2A3EC29CFD972009BDC7D /* pictures.xpm in Resources */ = {isa = PBXBuildFile; fileRef = 1FA2A3CE29CFD96F009BDC7D /* pictures.xpm */; };
 		1FA2A3EE29CFD972009BDC7D /* canvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1FA2A3D029CFD970009BDC7D /* canvas.cpp */; };
@@ -38,6 +39,8 @@
 
 /* Begin PBXFileReference section */
 		1F66C27F29CF522400927192 /* hello-forty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hello-forty.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F8C58C629E1943100DB78CB /* util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = util.cpp; sourceTree = "<group>"; };
+		1F8C58C729E1943100DB78CB /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = util.h; sourceTree = "<group>"; };
 		1FA2A3C929CFD96F009BDC7D /* about.htm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.htm; sourceTree = "<group>"; };
 		1FA2A3CA29CFD96F009BDC7D /* pile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pile.h; sourceTree = "<group>"; };
 		1FA2A3CB29CFD96F009BDC7D /* scoredg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = scoredg.h; sourceTree = "<group>"; };
@@ -116,6 +119,8 @@
 				1FA2A3E429CFD971009BDC7D /* scorefil.cpp */,
 				1FA2A3E729CFD972009BDC7D /* scorefil.h */,
 				1FA2A3E629CFD972009BDC7D /* symbols.xpm */,
+				1F8C58C629E1943100DB78CB /* util.cpp */,
+				1F8C58C729E1943100DB78CB /* util.h */,
 			);
 			path = "hello-forty";
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 			files = (
 				1FA2A3FC29CFD972009BDC7D /* forty.cpp in Sources */,
 				1FA2A3EE29CFD972009BDC7D /* canvas.cpp in Sources */,
+				1F8C58C829E1943100DB78CB /* util.cpp in Sources */,
 				1FA2A3EF29CFD972009BDC7D /* playerdg.cpp in Sources */,
 				1FA2A3FE29CFD972009BDC7D /* scoredg.cpp in Sources */,
 				1FA2A3F129CFD972009BDC7D /* pile.cpp in Sources */,

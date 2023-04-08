@@ -91,6 +91,30 @@ Card::Card(int value, WayUp way_up) :
 } // Card::Card()
 
 
+Card::Card(int value, Suit suit, WayUp way_up) :
+      m_wayUp(way_up) {
+
+    if(!m_symbolBmap) {
+        m_symbolBmap = new wxBitmap(symbols_xpm);
+        if(!m_symbolBmap->IsOk()) {
+            ::wxMessageBox(wxT("Failed to load bitmap CardSymbols"), wxT("Error"));
+        }
+    }
+    if(!m_pictureBmap) {
+        m_pictureBmap = new wxBitmap(Pictures);
+        if(!m_pictureBmap->IsOk()) {
+            ::wxMessageBox(wxT("Failed to load bitmap CardPictures"), wxT("Error"));
+        }
+    }
+
+    m_suit = suit;
+    // m_colour = ;
+    m_pipValue = 1 + (value - 1) % 13;
+    m_status = true;
+
+} // Card::Card()
+
+
 //+-------------------------------------------------------------+
 //| Card::SetScale()                                            |
 //+-------------------------------------------------------------+

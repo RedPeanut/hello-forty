@@ -28,7 +28,7 @@ const int PackSize = 52;
 #define CardWidth  Card::GetWidth()
 
 // Data types
-enum Suit { clubs = 0, diamonds = 1, hearts = 2, spades = 3 };
+enum Suit { undefined = -1, clubs = 0, diamonds = 1, hearts = 2, spades = 3 };
 enum SuitColour { red = 0, black = 1 };
 enum WayUp { faceup, facedown };
 
@@ -43,6 +43,7 @@ class Card {
 
 public:
     Card(int value, WayUp way_up = facedown);
+    Card(int value, Suit suit, WayUp way_up = facedown);
     virtual ~Card(){}
 
     void Draw(wxDC& pDC, int x, int y);
