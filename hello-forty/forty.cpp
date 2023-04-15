@@ -81,11 +81,9 @@ bool FortyApp::OnInit() {
             largecards
     );
 
-     // Show the frame
+    // Show the frame
     frame->Show(true);
-
     frame->GetCanvas()->ShowPlayerDialog();
-
     return true;
 }
 

@@ -95,8 +95,7 @@ public:
     bool InPlay() const { return m_inPlay; }
 
 private:
-    bool DropCard(int x, int y, Pile* pile, Card* card);
-            //  can the card at (x, y) be dropped on the pile?
+    bool DropCard(int x, int y, Pile* pile, Card* card); // can the card at (x, y) be dropped on the pile?
     Pile* WhichPile(int x, int y); // which pile is (x, y) over?
     void DoMove(wxDC& dc, Pile* src, Pile* dest);
 
