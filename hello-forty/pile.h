@@ -32,8 +32,7 @@
 #define _PILE_H_
 #include "card.h"
 
-const int NumCards = 2 * PackSize;
-
+const int NumCards = 2 * PackSize; // 2*54=104
 
 //----------------------------------------------------------------//
 // A class defining a pile of cards with a position on the screen //

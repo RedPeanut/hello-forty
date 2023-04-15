@@ -108,7 +108,7 @@ Card::Card(int value, Suit suit, WayUp way_up) :
     }
 
     m_suit = suit;
-    // m_colour = ;
+    m_colour = (suit == clubs || suit == spades) ? black : red;
     m_pipValue = 1 + (value - 1) % 13;
     m_status = true;
 
