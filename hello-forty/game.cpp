@@ -156,6 +156,9 @@ void Game::Auto(wxDC& dc) {
 }
 
 
+#include "wx/file.h"
+#include "wx/filename.h"
+
 void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
     if(m_moveIndex < MaxMoves) {
         if(src == dest) {
@@ -181,6 +184,23 @@ void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
     DisplayScore(dc);
 
     if(HaveYouWon()) {
+
+        // TODO: record m_moves backward in here
+        wxString appName = wxTheApp->GetAppName();
+        wxString homeDir = wxGetHomeDir();
+        wxString filename = homeDir+wxT("/local/")+appName+".out";
+
+        wxFile file;
+        if(wxFile::Exists(filename))
+            file.Open(filename, wxFile::write_append);
+        else
+            file.Create(filename, false, wxS_IRUSR | wxS_IWUSR);
+        
+        if(file.IsOpened()) {
+            file.Write(wxT("write something\n"));
+            file.Close();
+        }
+
         wxWindow *frame = wxTheApp->GetTopWindow();
         wxWindow *canvas = (wxWindow *) NULL;
 
