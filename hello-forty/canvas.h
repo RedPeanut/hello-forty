@@ -30,7 +30,8 @@ public:
     void NewGame();
     void Undo();
     void Redo();
-
+    void Auto();
+    
     ScoreFile* GetScoreFile() const { return m_scoreFile; }
     void UpdateScores();
     void EnableHelpingHand(bool enable) { m_helpingHand = enable; }

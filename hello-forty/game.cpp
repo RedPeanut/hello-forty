@@ -136,6 +136,26 @@ void Game::Redo(wxDC& dc) {
     }
 }
 
+// Auto
+void Game::Auto(wxDC& dc) {
+    // Pile *src, *dst;
+    // src = PickPile(Which::pack);
+    // dst = PickPile(Which::discard);
+    Card* card = m_pack->RemoveTopCard();
+    card->TurnCard(faceup);
+    m_discard->AddCard(dc, card);
+
+    Pile *src, *dest;
+    src = m_pack; dest = m_discard;
+    m_moves[m_moveIndex].src = src;
+    m_moves[m_moveIndex].dest = dest;
+    m_moveIndex++;
+    m_numMoves++;
+
+    DisplayScore(dc);
+}
+
+
 void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
     if(m_moveIndex < MaxMoves) {
         if(src == dest) {
