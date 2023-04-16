@@ -24,6 +24,7 @@
 #include "forty.h"
 #include "game.h"
 #include "util.h"
+#include <format>
 
 Game::Game(int wins, int games, int score) :
     m_inPlay(false),
@@ -352,7 +353,9 @@ void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
 
     if(HaveYouWon()) {
 
-        // TODO: record m_moves backward in here
+        // wxPrintf("m_moveIndex = %d\n", m_moveIndex);
+        // wxPrintf("m_numMoves = %d\n", m_numMoves);
+
         wxString appName = wxTheApp->GetAppName();
         wxString homeDir = wxGetHomeDir();
         wxString filename = homeDir+wxT("/local/")+appName+".out";
@@ -364,7 +367,26 @@ void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
             file.Create(filename, false, wxS_IRUSR | wxS_IWUSR);
         
         if(file.IsOpened()) {
-            file.Write(wxT("write something\n"));
+
+            // Record m_moves rewind in here
+            for(int i = m_moveIndex-1; i > -1; i--) {
+                Card* card = m_moves[i].dest->RemoveTopCard(dc);
+                m_moves[i].src->AddCard(dc, card);
+            }
+
+            std::string output;
+            char buffer[32]; int n;
+            for(int i = 0; i < m_moveIndex; i++) {
+                Card* card = m_moves[i].src->RemoveTopCard(dc);
+                m_moves[i].dest->AddCard(dc, card);
+                // wxPrintf("[%s]%s>%s\n", card->ToString(), m_moves[i].src->ToString(), m_moves[i].dest->ToString());
+                // output += " " + card->ToString() + m_moves[i].src->ToString() + m_moves[i].dest->ToString();
+                n = snprintf(buffer, sizeof(buffer), "%s:%s>%s", card->ToString().c_str(), m_moves[i].src->ToString().c_str(), m_moves[i].dest->ToString().c_str());
+                output += " " + std::string(buffer, n);
+            }
+            output = output.replace(output.find(" "), sizeof(" ")-1, "");
+
+            file.Write(output+"\n");
             file.Close();
         }
 
