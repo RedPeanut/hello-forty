@@ -81,6 +81,7 @@ public:
     void Undo(wxDC& dc); // Undo the last go
     void Redo(wxDC& dc); // Redo the last go
     void Auto(wxDC& dc); // Auto go
+    void Flip(wxDC& dc);
 
     void Redraw(wxDC& dc);
     void DisplayScore(wxDC& dc);
