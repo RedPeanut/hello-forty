@@ -120,7 +120,8 @@ void FortyCanvas::ShowPlayerDialog() {
 
             wxClientDC dc(this);
             dc.SetFont(* m_font);
-            m_game->DisplayScore(dc);
+            m_game->Auto(dc);
+            // m_game->DisplayScore(dc);
             m_playerDialog->Destroy();
             m_playerDialog = 0;
             Refresh(false);
@@ -205,6 +206,10 @@ void FortyCanvas::SetCursorStyle(int x, int y) {
 
 void FortyCanvas::NewGame() {
     m_game->Deal();
+    // wxClientDC dc(this);
+    // PrepareDC(dc);
+    // dc.SetFont(* m_font);
+    // m_game->Auto(dc);
     Refresh();
 }
 
