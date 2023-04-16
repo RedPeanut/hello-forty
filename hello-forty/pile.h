@@ -48,7 +48,7 @@ public:
 
     // Card query functions
     virtual Card* GetCard(int x, int y); // Get pointer to card at x, y
-    Card* GetTopCard();                     // Get pointer to top card
+    Card* GetTopCard(); // Get pointer to top card
     virtual void GetCardPos(Card* card, int& x, int& y);
     // Get position of a card
     virtual void GetTopCardPos(int& x, int& y);
@@ -67,7 +67,7 @@ public:
     virtual bool AcceptCard(Card*) { return false; }
     virtual void AddCard(Card* card); // Add card to top of pile
     virtual void AddCard(wxDC& pDC, Card* card); // Add card + redraw it
-        void SetPos(int x,int y) {m_x = x;m_y = y;}
+    void SetPos(int x,int y) {m_x = x;m_y = y;}
 
 protected:
     int   m_x, m_y; // Position of the pile on the screen
