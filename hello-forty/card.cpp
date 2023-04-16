@@ -553,3 +553,47 @@ void Card::DrawNullCard(wxDC& dc, int x, int y) {
     dc.SetPen(*pen);
     dc.DrawRoundedRectangle(x, y, m_width, m_height, 4);
 } // Card::DrawNullCard()
+
+
+// std::string Card::ToString() {
+//     std::string str;
+//     str = "Card[suit = " + std::string(
+//             m_suit == spades ? "S" :
+//                 m_suit == hearts ? "H" :
+//                     m_suit == diamonds ? "D" :
+//                         m_suit == clubs ? "C" : ""
+//         )
+//         + ", pipValue = " + std::string(
+//             m_pipValue == 1 ? "A" :
+//                 (2 <= m_pipValue && m_pipValue <= 10) ? std::to_string(m_pipValue) :
+//                     m_pipValue == 11 ? "J" :
+//                         m_pipValue == 12 ? "Q" :
+//                             m_pipValue == 13 ? "K" : ""
+//         )
+//         + ", colour = " + std::string(
+//             m_colour == red ? "R" :
+//                 m_colour == black ? "B" : ""
+//         )
+//         + ", wayUp = " + std::to_string(m_wayUp)
+//         + "]";
+//     return str;
+// }
+
+
+std::string Card::ToString() {
+    std::string str = 
+        std::string(
+            m_pipValue == 1 ? "A" :
+                (2 <= m_pipValue && m_pipValue <= 10) ? std::to_string(m_pipValue) :
+                    m_pipValue == 11 ? "J" :
+                        m_pipValue == 12 ? "Q" :
+                            m_pipValue == 13 ? "K" : ""
+        )
+        + std::string(
+            m_suit == spades ? "S" :
+                m_suit == hearts ? "H" :
+                    m_suit == diamonds ? "D" :
+                        m_suit == clubs ? "C" : ""
+        );
+    return str;
+}

@@ -30,7 +30,9 @@
 //+-------------------------------------------------------------+
 #ifndef _PILE_H_
 #define _PILE_H_
+
 #include "card.h"
+#include <string>
 
 const int NumCards = 2 * PackSize; // 2*54=104
 
@@ -68,6 +70,8 @@ public:
     virtual void AddCard(Card* card); // Add card to top of pile
     virtual void AddCard(wxDC& pDC, Card* card); // Add card + redraw it
     void SetPos(int x,int y) {m_x = x;m_y = y;}
+
+    virtual std::string ToString();
 
 protected:
     int   m_x, m_y; // Position of the pile on the screen

@@ -29,6 +29,8 @@ public:
     void Shuffle();
     void AddCard(Card* card) wxOVERRIDE; // Add card
     void AddCard(wxDC& dc, Card* card) wxOVERRIDE { AddCard(card); Redraw(dc); }
+    // std::string ToString() wxOVERRIDE { return "Pack[" + Pile::ToString() + "]"; }
+    std::string ToString() wxOVERRIDE { return "P"; }
 };
 
 
@@ -40,6 +42,8 @@ public:
     Base(int x, int y);
     virtual ~Base(){}
     bool AcceptCard(Card* card) wxOVERRIDE;
+    // std::string ToString() wxOVERRIDE { return "Base[" + Pile::ToString() + "]"; }
+    std::string ToString() wxOVERRIDE { return "B"; }
 };
 
 
@@ -51,6 +55,8 @@ public:
     Foundation(int x, int y);
     virtual ~Foundation(){}
     bool AcceptCard(Card* card) wxOVERRIDE;
+    // std::string ToString() wxOVERRIDE { return "Foundation[" + Pile::ToString() + "]"; }
+    std::string ToString() wxOVERRIDE { return "F"; }
 };
 
 
@@ -64,6 +70,8 @@ public:
     void Redraw(wxDC& dc) wxOVERRIDE;
     void GetTopCardPos(int& x, int& y) wxOVERRIDE;
     Card* RemoveTopCard(wxDC& dc, int m_xOffset, int m_yOffset) wxOVERRIDE;
+    // std::string ToString() wxOVERRIDE { return "Discard[" + Pile::ToString() + "]"; }
+    std::string ToString() wxOVERRIDE { return "D"; }
 };
 
 

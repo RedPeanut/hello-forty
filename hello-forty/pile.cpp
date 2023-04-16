@@ -249,3 +249,15 @@ bool Pile::Overlap(int x, int y) {
     }
     return false;
 }
+
+
+std::string Pile::ToString() {
+    std::string str;
+    str = "x = " + std::to_string(m_x)
+        + ", y = " + std::to_string(m_y)
+        + ", dx = " + std::to_string(m_dx)
+        + ", dy = " + std::to_string(m_dy)
+        + ", topCard = " + std::to_string(m_topCard)
+        ;
+    return str;
+}

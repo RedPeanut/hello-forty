@@ -21,6 +21,8 @@
 #ifndef _CARD_H_
 #define _CARD_H_
 
+#include <string>
+
 // Constants
 const int PackSize = 52;
 
@@ -59,6 +61,7 @@ public:
     static int GetHeight() { return m_height; }
     static int GetWidth() { return m_width; }
     static double GetScale() { return m_scale; }
+    virtual std::string ToString();
 
 private:
     Suit m_suit;
