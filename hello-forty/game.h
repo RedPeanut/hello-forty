@@ -87,6 +87,7 @@ public:
     bool LButtonDown(wxDC& dc, int mx, int my);
     void LButtonUp(wxDC& dc, int mx, int my);
     void LButtonDblClk(wxDC& dc, int mx, int my);
+    void Choice(wxDC& dc, Pile* pile, Card* card);
     void MouseMove(wxDC& dc, int mx, int my);
 
     int GetNumWins() const { return m_numWins; }

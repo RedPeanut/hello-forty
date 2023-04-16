@@ -427,10 +427,6 @@ bool Game::LButtonDown(wxDC& dc, int x, int y) {
 
 // Called when the left button is double clicked
 // If a card is under the pointer and it can move elsewhere then move it.
-// Move onto a foundation as first choice, a populated base as second and
-// an empty base as third choice.
-// NB Cards in the m_pack cannot be moved in this way - they aren't in play
-// yet
 void Game::LButtonDblClk(wxDC& dc, int x, int y) {
     Pile* pile = WhichPile(x, y);
     if(!pile) return;
@@ -440,57 +436,66 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y) {
         LButtonDown(dc, x, y);
     } else {
         Card* card = pile->GetTopCard();
-
         if(card) {
-            int i;
+            Choice(dc, pile, card);
+        }
+    }
+}
 
-            // if the card is an ace then try to place it next
-            // to an ace of the same suit
-            if(card->GetPipValue() == 1) {
-                for(i = 0; i < 4; i++) {
-                    Card* m_topCard = m_foundations[i]->GetTopCard();
-                    if(m_topCard) {
-                        if(m_topCard->GetSuit() == card->GetSuit() &&
-                            m_foundations[i + 4] != pile &&
-                            m_foundations[i + 4]->GetTopCard() == 0) {
-                            pile->RemoveTopCard(dc);
-                            m_foundations[i + 4]->AddCard(dc, card);
-                            DoMove(dc, pile, m_foundations[i + 4]);
-                            return;
-                        }
-                    }
-                }
-            }
 
-            // try to place the card on a foundation
-            for(i = 0; i < 8; i++) {
-                if(m_foundations[i]->AcceptCard(card) && m_foundations[i] != pile) {
+// Move onto a foundation as first choice, a populated base as second and
+// an empty base as third choice.
+// NB Cards in the m_pack cannot be moved in this way - they aren't in play
+// yet
+void Game::Choice(wxDC& dc, Pile* pile, Card* card) {
+
+    int i;
+
+    // if the card is an ace then try to place it next
+    // to an ace of the same suit
+    if(card->GetPipValue() == 1) {
+        for(i = 0; i < 4; i++) {
+            Card* m_topCard = m_foundations[i]->GetTopCard();
+            if(m_topCard) {
+                if(m_topCard->GetSuit() == card->GetSuit() &&
+                    m_foundations[i + 4] != pile &&
+                    m_foundations[i + 4]->GetTopCard() == 0) {
                     pile->RemoveTopCard(dc);
-                    m_foundations[i]->AddCard(dc, card);
-                    DoMove(dc, pile, m_foundations[i]);
+                    m_foundations[i + 4]->AddCard(dc, card);
+                    DoMove(dc, pile, m_foundations[i + 4]);
                     return;
                 }
             }
-            // try to place the card on a populated base
-            for(i = 0; i < 10; i++) {
-                if(m_bases[i]->AcceptCard(card) &&
-                    m_bases[i] != pile &&
-                    m_bases[i]->GetTopCard()) {
-                    pile->RemoveTopCard(dc);
-                    m_bases[i]->AddCard(dc, card);
-                    DoMove(dc, pile, m_bases[i]);
-                    return;
-                }
-            }
-            // try to place the card on any base
-            for(i = 0; i < 10; i++) {
-                if(m_bases[i]->AcceptCard(card) && m_bases[i] != pile) {
-                    pile->RemoveTopCard(dc);
-                    m_bases[i]->AddCard(dc, card);
-                    DoMove(dc, pile, m_bases[i]);
-                    return;
-                }
-            }
+        }
+    }
+
+    // try to place the card on a foundation
+    for(i = 0; i < 8; i++) {
+        if(m_foundations[i]->AcceptCard(card) && m_foundations[i] != pile) {
+            pile->RemoveTopCard(dc);
+            m_foundations[i]->AddCard(dc, card);
+            DoMove(dc, pile, m_foundations[i]);
+            return;
+        }
+    }
+    // try to place the card on a populated base
+    for(i = 0; i < 10; i++) {
+        if(m_bases[i]->AcceptCard(card) &&
+            m_bases[i] != pile &&
+            m_bases[i]->GetTopCard()) {
+            pile->RemoveTopCard(dc);
+            m_bases[i]->AddCard(dc, card);
+            DoMove(dc, pile, m_bases[i]);
+            return;
+        }
+    }
+    // try to place the card on any base
+    for(i = 0; i < 10; i++) {
+        if(m_bases[i]->AcceptCard(card) && m_bases[i] != pile) {
+            pile->RemoveTopCard(dc);
+            m_bases[i]->AddCard(dc, card);
+            DoMove(dc, pile, m_bases[i]);
+            return;
         }
     }
 }
