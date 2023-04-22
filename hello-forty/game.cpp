@@ -137,176 +137,209 @@ void Game::Redo(wxDC& dc) {
     }
 }
 
-// Auto
+// Auto move
 void Game::Auto(wxDC& dc) {
     Choice(dc, m_bases[4], m_bases[4]->GetTopCard());
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[5], m_bases[5]->GetTopCard());
-    Flip(dc);
+    Flip(dc); // 5
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[3], m_bases[3]->GetTopCard());
-    Flip(dc); Flip(dc); Flip(dc);
+    Flip(dc);
+    Flip(dc);
+    Flip(dc); // 10
     Choice(dc, m_discard, m_discard->GetTopCard());
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
     Flip(dc);
-    Choice(dc, m_discard, m_discard->GetTopCard());
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 15
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
     Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
-    Flip(dc);
+    Flip(dc); // 20
     Choice(dc, m_discard, m_discard->GetTopCard());
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[6], m_bases[6]->GetTopCard());
-    Choice(dc, m_bases[6], m_bases[6]->GetTopCard());
+    Choice(dc, m_bases[6], m_bases[6]->GetTopCard()); // 25
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc); Flip(dc); Flip(dc); Flip(dc);
+    Flip(dc);
+    Flip(dc);
+    Flip(dc); // 30
+    Flip(dc);
+    Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc); Flip(dc); Flip(dc); Flip(dc);
+    Flip(dc);
+    Flip(dc); // 35
+    Flip(dc);
+    Flip(dc);
+    Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc);
+    Flip(dc); // 40
+    Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc);
-    Choice(dc, m_discard, m_discard->GetTopCard());
+    Flip(dc);
+    Flip(dc);
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 45
     Choice(dc, m_bases[7], m_bases[7]->GetTopCard());
     Choice(dc, m_bases[5], m_bases[5]->GetTopCard());
     Choice(dc, m_bases[5], m_bases[5]->GetTopCard());
     Choice(dc, m_bases[5], m_bases[5]->GetTopCard());
-    Choice(dc, m_bases[5], m_bases[5]->GetTopCard());
+    Choice(dc, m_bases[5], m_bases[5]->GetTopCard()); // 50
     Choice(dc, m_bases[1], m_bases[1]->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[9], m_bases[9]->GetTopCard());
     Flip(dc);
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 55
+    Flip(dc); 
+    Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc);
-    Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc);
+    Flip(dc); 
+    Flip(dc); // 60
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[7], m_bases[7]->GetTopCard());
-    Flip(dc); Flip(dc);
-    Choice(dc, m_discard, m_discard->GetTopCard());
+    Flip(dc); 
+    Flip(dc);
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 65
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc); Flip(dc); Flip(dc); Flip(dc); Flip(dc); 
+    Flip(dc); // 70
+    Flip(dc); 
+    Flip(dc); 
+    Flip(dc); 
+    Flip(dc); 
+    Flip(dc); // 75
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc); Flip(dc); Flip(dc); Flip(dc); Flip(dc); Flip(dc); Flip(dc); Flip(dc); 
+    Flip(dc); 
+    Flip(dc); 
+    Flip(dc); 
+    Flip(dc); // 80
+    Flip(dc); 
+    Flip(dc); 
+    Flip(dc); 
+    Flip(dc); 
+    Flip(dc); // 85
     Choice(dc, m_discard, m_discard->GetTopCard());
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc);
+    Flip(dc); // 90
+    Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[3], m_bases[3]->GetTopCard());
     Choice(dc, m_bases[3], m_bases[3]->GetTopCard());
-    Choice(dc, m_bases[3], m_bases[3]->GetTopCard());
+    Choice(dc, m_bases[3], m_bases[3]->GetTopCard()); // 95
     Choice(dc, m_bases[4], m_bases[4]->GetTopCard());
     Choice(dc, m_bases[8], m_bases[8]->GetTopCard());
     Choice(dc, m_bases[1], m_bases[1]->GetTopCard());
     Choice(dc, m_bases[8], m_bases[8]->GetTopCard());
-    Choice(dc, m_bases[9], m_bases[9]->GetTopCard());
+    Choice(dc, m_bases[9], m_bases[9]->GetTopCard()); // 100
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc);
-    Choice(dc, m_discard, m_discard->GetTopCard());
+    Flip(dc); 
+    Flip(dc);
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 105
     Choice(dc, m_bases[7], m_bases[7]->GetTopCard());
     Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
     Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
     Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
+    Choice(dc, m_bases[2], m_bases[2]->GetTopCard()); // 110
     Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
     Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
     Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
     Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
-    Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
-    Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
+    Choice(dc, m_bases[2], m_bases[2]->GetTopCard()); // 115
     Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[9], m_bases[9]->GetTopCard());
-    Choice(dc, m_bases[3], m_bases[3]->GetTopCard());
+    Choice(dc, m_bases[3], m_bases[3]->GetTopCard()); // 120
     Choice(dc, m_bases[3], m_bases[3]->GetTopCard());
     Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc);
+    Flip(dc); // 125
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[7], m_bases[7]->GetTopCard());
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Choice(dc, m_bases[1], m_bases[1]->GetTopCard());
+    Choice(dc, m_bases[1], m_bases[1]->GetTopCard()); // 130
     Choice(dc, m_bases[4], m_bases[4]->GetTopCard());
     Choice(dc, m_bases[9], m_bases[9]->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Choice(dc, m_discard, m_discard->GetTopCard());
-    Choice(dc, m_discard, m_discard->GetTopCard());
-    Choice(dc, m_discard, m_discard->GetTopCard());
-    Choice(dc, m_discard, m_discard->GetTopCard());
-    Choice(dc, m_bases[5], m_bases[5]->GetTopCard());
-    Choice(dc, m_discard, m_discard->GetTopCard());
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 135
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[5], m_bases[5]->GetTopCard());
-    Choice(dc, m_bases[1], m_bases[1]->GetTopCard());
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 140
+    Choice(dc, m_discard, m_discard->GetTopCard());
+    Choice(dc, m_discard, m_discard->GetTopCard());
+    Choice(dc, m_discard, m_discard->GetTopCard());
+    Choice(dc, m_bases[5], m_bases[5]->GetTopCard());
+    Choice(dc, m_bases[1], m_bases[1]->GetTopCard()); // 145
     Choice(dc, m_bases[7], m_bases[7]->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Choice(dc, m_discard, m_discard->GetTopCard());
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 150
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[5], m_bases[5]->GetTopCard());
     // Choice(dc, m_bases[1], m_bases[1]->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Choice(dc, m_discard, m_discard->GetTopCard());
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 155
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[3], m_bases[3]->GetTopCard());
     Choice(dc, m_bases[2], m_bases[2]->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 160
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Choice(dc, m_discard, m_discard->GetTopCard());
+    Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
+    Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
+    Choice(dc, m_bases[0], m_bases[0]->GetTopCard()); // 165
     Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
     Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
     Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
     Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
-    Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
-    Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
-    Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
-    Choice(dc, m_discard, m_discard->GetTopCard());
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 170
     Flip(dc);
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Flip(dc); Flip(dc); Flip(dc); Flip(dc); 
+    Flip(dc); 
+    Flip(dc); 
+    Flip(dc); // 175
+    Flip(dc); 
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[6], m_bases[6]->GetTopCard());
     Choice(dc, m_bases[6], m_bases[6]->GetTopCard());
-    Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
+    Choice(dc, m_bases[0], m_bases[0]->GetTopCard()); // 180
     Choice(dc, m_bases[5], m_bases[5]->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[0], m_bases[0]->GetTopCard());
-    Flip(dc); 
+    Flip(dc); // 185
     Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[4], m_bases[4]->GetTopCard());
     Choice(dc, m_bases[4], m_bases[4]->GetTopCard());
     Choice(dc, m_bases[8], m_bases[8]->GetTopCard());
-    Choice(dc, m_bases[8], m_bases[8]->GetTopCard());
+    Choice(dc, m_bases[8], m_bases[8]->GetTopCard()); // 190
     Choice(dc, m_bases[8], m_bases[8]->GetTopCard());
     Choice(dc, m_bases[9], m_bases[9]->GetTopCard());
     Choice(dc, m_bases[9], m_bases[9]->GetTopCard());
     Flip(dc); 
+    Choice(dc, m_discard, m_discard->GetTopCard()); // 195
     Choice(dc, m_discard, m_discard->GetTopCard());
-    Choice(dc, m_discard, m_discard->GetTopCard());
     Choice(dc, m_bases[1], m_bases[1]->GetTopCard());
     Choice(dc, m_bases[1], m_bases[1]->GetTopCard());
     Choice(dc, m_bases[1], m_bases[1]->GetTopCard());
-    Choice(dc, m_bases[7], m_bases[7]->GetTopCard());
+    Choice(dc, m_bases[7], m_bases[7]->GetTopCard()); // 200
     Choice(dc, m_bases[7], m_bases[7]->GetTopCard());
     Choice(dc, m_bases[8], m_bases[8]->GetTopCard());
     Choice(dc, m_bases[6], m_bases[6]->GetTopCard());
