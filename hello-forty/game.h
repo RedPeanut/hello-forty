@@ -107,7 +107,6 @@ public:
     int GetNumWins() const { return m_numWins; }
     int GetNumGames() const { return m_numGames; }
     int GetScore() const { return m_currentScore + m_totalScore; }
-
     bool InPlay() const { return m_inPlay; }
 
 private:

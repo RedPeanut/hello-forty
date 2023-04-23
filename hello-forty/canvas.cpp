@@ -249,5 +249,5 @@ void FortyCanvas::QuickN(int n) {
 }
 
 void FortyCanvas::LayoutGame() {
-       m_game->Layout();
+    m_game->Layout();
 }
