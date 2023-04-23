@@ -957,6 +957,11 @@ Pack::Pack(int x, int y) : Pile(x, y, 0, 0) {
 
 void Pack::Shuffle() {
 
+    int i;
+    for(i = 0; i <= m_topCard; i++) {
+        m_cards[i]->TurnCard(facedown);
+    }
+
     return;
 
     Card* temp[NumCards];
