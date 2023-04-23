@@ -115,7 +115,7 @@ void Game::NewPlayer(int wins, int games, int score) {
 void Game::Undo(wxDC& dc) {
     if(m_moveIndex > 0) {
         m_moveIndex--;
-        m_numMoves++;
+        m_numMoves--;
         Card* card = m_moves[m_moveIndex].dest->RemoveTopCard(dc);
         m_moves[m_moveIndex].src->AddCard(dc, card);
         DisplayScore(dc);
