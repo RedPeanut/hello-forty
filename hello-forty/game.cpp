@@ -360,7 +360,7 @@ void Game::Flip(wxDC& dc) {
 #include "wx/file.h"
 #include "wx/filename.h"
 
-void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
+void Game::DoMove(wxDC& dc, Pile* src, Pile* dest, bool haveYouWon) {
     if(m_moveIndex < MaxMoves) {
         if(src == dest) {
             wxMessageBox(wxT("Game::DoMove() src == dest"), wxT("Debug message"),
@@ -384,70 +384,71 @@ void Game::DoMove(wxDC& dc, Pile* src, Pile* dest) {
     }
     DisplayScore(dc);
 
-    if(HaveYouWon()) {
-
-        // wxPrintf("m_moveIndex = %d\n", m_moveIndex);
-        // wxPrintf("m_numMoves = %d\n", m_numMoves);
-
-        wxString appName = wxTheApp->GetAppName();
-        wxString homeDir = wxGetHomeDir();
-        wxString filename = homeDir+wxT("/local/")+appName+".out";
-
-        wxFile file;
-        if(wxFile::Exists(filename))
-            file.Open(filename, wxFile::write_append);
-        else
-            file.Create(filename, false, wxS_IRUSR | wxS_IWUSR);
-        
-        if(file.IsOpened()) {
-
-            // Record m_moves rewind in here
-            for(int i = m_moveIndex-1; i > -1; i--) {
-                Card* card = m_moves[i].dest->RemoveTopCard(dc);
-                m_moves[i].src->AddCard(dc, card);
-            }
-
-            std::string output;
-            char buffer[32]; int n;
-            for(int i = 0; i < m_moveIndex; i++) {
-                Card* card = m_moves[i].src->RemoveTopCard(dc);
-                m_moves[i].dest->AddCard(dc, card);
-                // wxPrintf("[%s]%s>%s\n", card->ToString(), m_moves[i].src->ToString(), m_moves[i].dest->ToString());
-                // output += " " + card->ToString() + m_moves[i].src->ToString() + m_moves[i].dest->ToString();
-                n = snprintf(buffer, sizeof(buffer), "%s:%s>%s", card->ToString().c_str(), m_moves[i].src->ToString().c_str(), m_moves[i].dest->ToString().c_str());
-                output += " " + std::string(buffer, n);
-            }
-            output = output.replace(output.find(" "), sizeof(" ")-1, "");
-
-            file.Write(output+"\n");
-            file.Close();
-        }
-
-        wxWindow *frame = wxTheApp->GetTopWindow();
-        wxWindow *canvas = (wxWindow *) NULL;
-
-        if(frame) {
-            wxWindowList::compatibility_iterator node = frame->GetChildren().GetFirst();
-            if(node) canvas = (wxWindow*)node->GetData();
-        }
-
-        // This game is over
-        m_inPlay = false;
-
-        // Redraw the score box to update games won
-        DisplayScore(dc);
-
-        if(wxMessageBox(wxT("Do you wish to play again?"),
-            wxT("Well Done, You have won!"), wxYES_NO | wxICON_QUESTION) == wxYES) {
-            Deal();
-            canvas->Refresh();
-        } else {
-            // user cancelled the dialog - exit the app
-            ((wxFrame*)canvas->GetParent())->Close(true);
-        }
-    }
+    if(haveYouWon && HaveYouWon())
+        YouWon(dc);
 }
 
+void Game::YouWon(wxDC& dc) {
+    // wxPrintf("m_moveIndex = %d\n", m_moveIndex);
+    // wxPrintf("m_numMoves = %d\n", m_numMoves);
+
+    wxString appName = wxTheApp->GetAppName();
+    wxString homeDir = wxGetHomeDir();
+    wxString filename = homeDir+wxT("/local/")+appName+".out";
+
+    wxFile file;
+    if(wxFile::Exists(filename))
+        file.Open(filename, wxFile::write_append);
+    else
+        file.Create(filename, false, wxS_IRUSR | wxS_IWUSR);
+    
+    if(file.IsOpened()) {
+
+        // Record m_moves rewind in here
+        for(int i = m_moveIndex-1; i > -1; i--) {
+            Card* card = m_moves[i].dest->RemoveTopCard(dc);
+            m_moves[i].src->AddCard(dc, card);
+        }
+
+        std::string output;
+        char buffer[32]; int n;
+        for(int i = 0; i < m_moveIndex; i++) {
+            Card* card = m_moves[i].src->RemoveTopCard(dc);
+            m_moves[i].dest->AddCard(dc, card);
+            // wxPrintf("[%s]%s>%s\n", card->ToString(), m_moves[i].src->ToString(), m_moves[i].dest->ToString());
+            // output += " " + card->ToString() + m_moves[i].src->ToString() + m_moves[i].dest->ToString();
+            n = snprintf(buffer, sizeof(buffer), "%s:%s>%s", card->ToString().c_str(), m_moves[i].src->ToString().c_str(), m_moves[i].dest->ToString().c_str());
+            output += " " + std::string(buffer, n);
+        }
+        output = output.replace(output.find(" "), sizeof(" ")-1, "");
+
+        file.Write(output+"\n");
+        file.Close();
+    }
+
+    wxWindow *frame = wxTheApp->GetTopWindow();
+    wxWindow *canvas = (wxWindow *) NULL;
+
+    if(frame) {
+        wxWindowList::compatibility_iterator node = frame->GetChildren().GetFirst();
+        if(node) canvas = (wxWindow*)node->GetData();
+    }
+
+    // This game is over
+    m_inPlay = false;
+
+    // Redraw the score box to update games won
+    DisplayScore(dc);
+
+    if(wxMessageBox(wxT("Do you wish to play again?"),
+        wxT("Well Done, You have won!"), wxYES_NO | wxICON_QUESTION) == wxYES) {
+        Deal();
+        canvas->Refresh();
+    } else {
+        // user cancelled the dialog - exit the app
+        ((wxFrame*)canvas->GetParent())->Close(true);
+    }
+}
 
 void Game::DisplayScore(wxDC& dc) {
     wxColour bgColour = FortyApp::BackgroundColour();

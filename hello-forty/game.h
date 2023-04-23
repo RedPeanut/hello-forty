@@ -85,6 +85,7 @@ public:
     void Deal(); // Shuffle and deal a new game
     bool CanYouGo(int x, int y); // can card under (x,y) go somewhere?
     bool HaveYouWon(); // have you won the game?
+    void YouWon(wxDC& dc);
 
     void Undo(wxDC& dc); // Undo the last go
     void Redo(wxDC& dc); // Redo the last go
@@ -108,7 +109,7 @@ public:
 private:
     bool DropCard(int x, int y, Pile* pile, Card* card); // can the card at (x, y) be dropped on the pile?
     Pile* WhichPile(int x, int y); // which pile is (x, y) over?
-    void DoMove(wxDC& dc, Pile* src, Pile* dest);
+    void DoMove(wxDC& dc, Pile* src, Pile* dest, bool haveYouWon = true);
 
     bool m_inPlay; // flag indicating that the game has started
 
