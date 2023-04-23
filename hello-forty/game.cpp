@@ -410,9 +410,9 @@ void Game::YouWon(wxDC& dc) {
     else
         file.Create(filename, false, wxS_IRUSR | wxS_IWUSR);
     
-    if(file.IsOpened()) {
+    // Record m_moves rewind in here
+    if(false && file.IsOpened()) {
 
-        // Record m_moves rewind in here
         for(int i = m_moveIndex-1; i > -1; i--) {
             Card* card = m_moves[i].dest->RemoveTopCard(dc);
             m_moves[i].src->AddCard(dc, card);
@@ -431,8 +431,8 @@ void Game::YouWon(wxDC& dc) {
         output = output.replace(output.find(" "), sizeof(" ")-1, "");
 
         file.Write(output+"\n");
-        file.Close();
     }
+    file.Close();
 
     wxWindow *frame = wxTheApp->GetTopWindow();
     wxWindow *canvas = (wxWindow *) NULL;
