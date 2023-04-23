@@ -228,10 +228,10 @@ void FortyCanvas::Redo() {
 }
 
 void FortyCanvas::Auto() {
-    wxClientDC dc(this);
-    PrepareDC(dc);
-    dc.SetFont(* m_font);
-    m_game->Auto(dc);
+    // wxClientDC dc(this);
+    // PrepareDC(dc);
+    // dc.SetFont(* m_font);
+    // m_game->Auto(dc);
 }
 
 void FortyCanvas::Quick(int n) {

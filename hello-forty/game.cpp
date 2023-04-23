@@ -346,7 +346,6 @@ void Game::Auto(wxDC& dc) {
     Choice(dc, m_bases[6], m_bases[6]->GetTopCard(), false); // 204
 }
 
-
 void Game::Flip(wxDC& dc) {
     Card* card;
     card = m_pack->RemoveTopCard();
@@ -516,7 +515,6 @@ void Game::DisplayScore(wxDC& dc) {
     dc.DrawText(str, x + w, y);
 }
 
-
 // Shuffle the m_pack and deal the cards
 void Game::Deal(bool resetPlay) {
     int i, j;
@@ -534,7 +532,7 @@ void Game::Deal(bool resetPlay) {
     for(i = 0; i < 10; i++) {
         m_bases[i]->ResetPile();
     }
-    for(i = 0; i <  8; i++) {
+    for(i = 0; i < 8; i++) {
         m_foundations[i]->ResetPile();
     }
 

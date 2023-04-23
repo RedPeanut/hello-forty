@@ -208,8 +208,7 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
 void FortyFrame::OnCloseWindow(wxCloseEvent& event) {
     if(m_canvas->OnCloseCanvas()) {
         this->Destroy();
-    }
-    else
+    } else
         event.Veto();
 }
 
@@ -228,22 +227,21 @@ void FortyFrame::Help(wxCommandEvent& event) {
         if(dialog.ShowModal() == wxID_OK) {
         }
     }
-    else
 #endif
-    {
+    else {
         About(event);
     }
 }
 
 void FortyFrame::About(wxCommandEvent&) {
-        wxMessageBox(
-            wxT("Forty Thieves\n\n")
-            wxT("A free card game written with the wxWidgets toolkit\n")
-            wxT("Author: Chris Breeze (c) 1992-2004\n")
-            wxT("email: chris@breezesys.com"),
-            wxT("About Forty Thieves"),
-            wxOK|wxICON_INFORMATION, this
-            );
+    wxMessageBox(
+        wxT("Forty Thieves\n\n")
+        wxT("A free card game written with the wxWidgets toolkit\n")
+        wxT("Author: Chris Breeze (c) 1992-2004\n")
+        wxT("email: chris@breezesys.com"),
+        wxT("About Forty Thieves"),
+        wxOK|wxICON_INFORMATION, this
+        );
 }
 
 
@@ -272,10 +270,10 @@ void FortyFrame::ToggleHelpingHand(wxCommandEvent& event) {
 }
 
 void FortyFrame::ToggleCardSize(wxCommandEvent& event) {
-        bool checked = m_menuBar->IsChecked(event.GetId());
-        Card::SetScale(checked ? 1.3 : 1);
-        m_canvas->LayoutGame();
-        m_canvas->Refresh();
+    bool checked = m_menuBar->IsChecked(event.GetId());
+    Card::SetScale(checked ? 1.3 : 1);
+    m_canvas->LayoutGame();
+    m_canvas->Refresh();
 }
 
 void FortyFrame::Quick(wxCommandEvent& event) {
