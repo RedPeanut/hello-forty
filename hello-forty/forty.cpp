@@ -158,11 +158,24 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
     helpMenu->Append(wxID_HELP_CONTENTS, wxT("&Help Contents"), wxT("Displays information about playing the game"));
     helpMenu->Append(wxID_ABOUT, wxT("&About"), wxT("About Forty Thieves"));
 
+    wxMenu* quickMenu = new wxMenu;
+    quickMenu->Append(QUICK_1, wxT("Step &1\tCtrl-1"));
+    quickMenu->Append(QUICK_2, wxT("Step &2\tCtrl-2"));
+    quickMenu->Append(QUICK_3, wxT("Step &3\tCtrl-3"));
+    quickMenu->Append(QUICK_4, wxT("Step &4\tCtrl-4"));
+    quickMenu->Append(QUICK_5, wxT("Step &5\tCtrl-5"));
+    quickMenu->Append(QUICK_6, wxT("Step &6\tCtrl-6"));
+    quickMenu->Append(QUICK_7, wxT("Step &7\tCtrl-7"));
+    quickMenu->Append(QUICK_8, wxT("Step &8\tCtrl-8"));
+    quickMenu->Append(QUICK_9, wxT("Step &9\tCtrl-9"));
+    quickMenu->Append(QUICK_0, wxT("Step &0\tCtrl-0"));
+
     m_menuBar = new wxMenuBar;
     m_menuBar->Append(gameMenu,    wxT("&Game"));
     m_menuBar->Append(editMenu,    wxT("&Edit"));
     m_menuBar->Append(optionsMenu, wxT("&Options"));
     m_menuBar->Append(helpMenu,    wxT("&Help"));
+    m_menuBar->Append(quickMenu,   wxT("quic&K"));
 
     SetMenuBar(m_menuBar);
 
@@ -253,6 +266,11 @@ void FortyFrame::ToggleCardSize(wxCommandEvent& event) {
         Card::SetScale(checked ? 1.3 : 1);
         m_canvas->LayoutGame();
         m_canvas->Refresh();
+}
+
+void FortyFrame::Quick(wxCommandEvent& event) {
+    wxPrintf("event.id = %d\n", event.GetId());
+    m_canvas->Quick(event.GetId()-QUICK_1+1);
 }
 
 //----------------------------------------------------------------------------

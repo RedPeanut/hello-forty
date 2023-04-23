@@ -120,8 +120,8 @@ void FortyCanvas::ShowPlayerDialog() {
 
             wxClientDC dc(this);
             dc.SetFont(* m_font);
-            m_game->Auto(dc);
-            // m_game->DisplayScore(dc);
+            // m_game->Auto(dc, 1);
+            m_game->DisplayScore(dc);
             m_playerDialog->Destroy();
             m_playerDialog = 0;
             Refresh(false);
@@ -232,6 +232,13 @@ void FortyCanvas::Auto() {
     PrepareDC(dc);
     dc.SetFont(* m_font);
     m_game->Auto(dc);
+}
+
+void FortyCanvas::Quick(int n) {
+    wxClientDC dc(this);
+    PrepareDC(dc);
+    dc.SetFont(* m_font);
+    m_game->Quick(dc, n);
 }
 
 void FortyCanvas::LayoutGame() {

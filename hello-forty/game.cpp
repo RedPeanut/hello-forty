@@ -343,7 +343,7 @@ void Game::Auto(wxDC& dc) {
     Choice(dc, m_bases[7], m_bases[7]->GetTopCard());
     Choice(dc, m_bases[8], m_bases[8]->GetTopCard());
     Choice(dc, m_bases[6], m_bases[6]->GetTopCard());
-    Choice(dc, m_bases[6], m_bases[6]->GetTopCard());
+    Choice(dc, m_bases[6], m_bases[6]->GetTopCard(), false); // 204
 }
 
 
@@ -356,6 +356,15 @@ void Game::Flip(wxDC& dc) {
     DoMove(dc, m_pack, m_discard);
 }
 
+// To review my move, quickly rewind the step
+void Game::Quick(wxDC& dc, int n) {
+    Deal(false);
+    Auto(dc);
+    int numMoves = m_numMoves;
+    for(int i = 0; i < numMoves; i++) Undo(dc);
+    int step = numMoves/10; // 20
+    for(int i = 0; i < n*step; i++) Redo(dc);
+}
 
 #include "wx/file.h"
 #include "wx/filename.h"
@@ -670,7 +679,7 @@ void Game::LButtonDblClk(wxDC& dc, int x, int y) {
 // an empty base as third choice.
 // NB Cards in the m_pack cannot be moved in this way - they aren't in play
 // yet
-void Game::Choice(wxDC& dc, Pile* pile, Card* card) {
+void Game::Choice(wxDC& dc, Pile* pile, Card* card, bool haveYouWon) {
 
     int i;
 
@@ -685,7 +694,7 @@ void Game::Choice(wxDC& dc, Pile* pile, Card* card) {
                     m_foundations[i + 4]->GetTopCard() == 0) {
                     pile->RemoveTopCard(dc);
                     m_foundations[i + 4]->AddCard(dc, card);
-                    DoMove(dc, pile, m_foundations[i + 4]);
+                    DoMove(dc, pile, m_foundations[i + 4], haveYouWon);
                     return;
                 }
             }
@@ -697,7 +706,7 @@ void Game::Choice(wxDC& dc, Pile* pile, Card* card) {
         if(m_foundations[i]->AcceptCard(card) && m_foundations[i] != pile) {
             pile->RemoveTopCard(dc);
             m_foundations[i]->AddCard(dc, card);
-            DoMove(dc, pile, m_foundations[i]);
+            DoMove(dc, pile, m_foundations[i], haveYouWon);
             return;
         }
     }
@@ -708,7 +717,7 @@ void Game::Choice(wxDC& dc, Pile* pile, Card* card) {
             m_bases[i]->GetTopCard()) {
             pile->RemoveTopCard(dc);
             m_bases[i]->AddCard(dc, card);
-            DoMove(dc, pile, m_bases[i]);
+            DoMove(dc, pile, m_bases[i], haveYouWon);
             return;
         }
     }
@@ -717,7 +726,7 @@ void Game::Choice(wxDC& dc, Pile* pile, Card* card) {
         if(m_bases[i]->AcceptCard(card) && m_bases[i] != pile) {
             pile->RemoveTopCard(dc);
             m_bases[i]->AddCard(dc, card);
-            DoMove(dc, pile, m_bases[i]);
+            DoMove(dc, pile, m_bases[i], haveYouWon);
             return;
         }
     }

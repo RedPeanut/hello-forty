@@ -90,6 +90,7 @@ public:
     void Undo(wxDC& dc); // Undo the last go
     void Redo(wxDC& dc); // Redo the last go
     void Auto(wxDC& dc); // Auto go
+    void Quick(wxDC& dc, int n);
     void Flip(wxDC& dc);
 
     void Redraw(wxDC& dc);
@@ -97,7 +98,7 @@ public:
     bool LButtonDown(wxDC& dc, int mx, int my);
     void LButtonUp(wxDC& dc, int mx, int my);
     void LButtonDblClk(wxDC& dc, int mx, int my);
-    void Choice(wxDC& dc, Pile* pile, Card* card);
+    void Choice(wxDC& dc, Pile* pile, Card* card, bool haveYouWon = true);
     void MouseMove(wxDC& dc, int mx, int my);
 
     int GetNumWins() const { return m_numWins; }
