@@ -518,7 +518,7 @@ void Game::DisplayScore(wxDC& dc) {
 
 
 // Shuffle the m_pack and deal the cards
-void Game::Deal() {
+void Game::Deal(bool resetPlay) {
     int i, j;
     Card* card;
 
@@ -547,13 +547,15 @@ void Game::Deal() {
         }
     }
 
-    if(m_inPlay) {
-        // player has started the game and then redealt
-        // and so we must add the score for this game to the total score
-        m_totalScore += m_currentScore;
+    if(resetPlay) {
+        if(m_inPlay) {
+            // player has started the game and then redealt
+            // and so we must add the score for this game to the total score
+            m_totalScore += m_currentScore;
+        }
+        m_inPlay = false;
     }
     m_currentScore = 0;
-    m_inPlay = false;
 }
 
 
