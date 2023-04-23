@@ -234,11 +234,18 @@ void FortyCanvas::Auto() {
     // m_game->Auto(dc);
 }
 
-void FortyCanvas::Quick(int n) {
+void FortyCanvas::QuickStep(int step) {
     wxClientDC dc(this);
     PrepareDC(dc);
     dc.SetFont(* m_font);
-    m_game->Quick(dc, n);
+    m_game->QuickStep(dc, step);
+}
+
+void FortyCanvas::QuickN(int n) {
+    wxClientDC dc(this);
+    PrepareDC(dc);
+    dc.SetFont(* m_font);
+    m_game->QuickN(dc, n);
 }
 
 void FortyCanvas::LayoutGame() {

@@ -90,7 +90,8 @@ public:
     void Undo(wxDC& dc); // Undo the last go
     void Redo(wxDC& dc); // Redo the last go
     void Auto(wxDC& dc); // Auto go
-    void Quick(wxDC& dc, int n);
+    void QuickStep(wxDC& dc, int step);
+    void QuickN(wxDC& dc, int n);
     void Flip(wxDC& dc);
 
     void Redraw(wxDC& dc);

@@ -356,13 +356,21 @@ void Game::Flip(wxDC& dc) {
 }
 
 // To review my move, quickly rewind the step
-void Game::Quick(wxDC& dc, int n) {
+void Game::QuickStep(wxDC& dc, int step) {
     Deal(false);
     Auto(dc);
     int numMoves = m_numMoves;
     for(int i = 0; i < numMoves; i++) Undo(dc);
-    int step = numMoves/10; // 20
-    for(int i = 0; i < n*step; i++) Redo(dc);
+    int unit = numMoves/10; // 20
+    for(int i = 0; i < step*unit; i++) Redo(dc);
+}
+
+void Game::QuickN(wxDC& dc, int n) {
+    Deal(false);
+    Auto(dc);
+    int numMoves = m_numMoves;
+    for(int i = 0; i < numMoves; i++) Undo(dc);
+    for(int i = 0; i < n; i++) Redo(dc);
 }
 
 #include "wx/file.h"

@@ -41,16 +41,17 @@ wxBEGIN_EVENT_TABLE(FortyFrame, wxFrame)
     EVT_MENU(RIGHT_BUTTON_UNDO, FortyFrame::ToggleRightButtonUndo)
     EVT_MENU(HELPING_HAND, FortyFrame::ToggleHelpingHand)
     EVT_MENU(LARGE_CARDS, FortyFrame::ToggleCardSize)
-    EVT_MENU(QUICK_1, FortyFrame::Quick)
-    EVT_MENU(QUICK_2, FortyFrame::Quick)
-    EVT_MENU(QUICK_3, FortyFrame::Quick)
-    EVT_MENU(QUICK_4, FortyFrame::Quick)
-    EVT_MENU(QUICK_5, FortyFrame::Quick)
-    EVT_MENU(QUICK_6, FortyFrame::Quick)
-    EVT_MENU(QUICK_7, FortyFrame::Quick)
-    EVT_MENU(QUICK_8, FortyFrame::Quick)
-    EVT_MENU(QUICK_9, FortyFrame::Quick)
-    EVT_MENU(QUICK_0, FortyFrame::Quick)
+    EVT_MENU(QUICK_N, FortyFrame::OnAskQuick)
+    EVT_MENU(QUICK_1, FortyFrame::QuickStep)
+    EVT_MENU(QUICK_2, FortyFrame::QuickStep)
+    EVT_MENU(QUICK_3, FortyFrame::QuickStep)
+    EVT_MENU(QUICK_4, FortyFrame::QuickStep)
+    EVT_MENU(QUICK_5, FortyFrame::QuickStep)
+    EVT_MENU(QUICK_6, FortyFrame::QuickStep)
+    EVT_MENU(QUICK_7, FortyFrame::QuickStep)
+    EVT_MENU(QUICK_8, FortyFrame::QuickStep)
+    EVT_MENU(QUICK_9, FortyFrame::QuickStep)
+    EVT_MENU(QUICK_0, FortyFrame::QuickStep)
     EVT_CLOSE(FortyFrame::OnCloseWindow)
 wxEND_EVENT_TABLE()
 
@@ -169,6 +170,7 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
     helpMenu->Append(wxID_ABOUT, wxT("&About"), wxT("About Forty Thieves"));
 
     wxMenu* quickMenu = new wxMenu;
+    quickMenu->Append(QUICK_N, wxT("Go &N\tCtrl-N"));
     quickMenu->Append(QUICK_1, wxT("Step &1\tCtrl-1"));
     quickMenu->Append(QUICK_2, wxT("Step &2\tCtrl-2"));
     quickMenu->Append(QUICK_3, wxT("Step &3\tCtrl-3"));
@@ -276,9 +278,32 @@ void FortyFrame::ToggleCardSize(wxCommandEvent& event) {
     m_canvas->Refresh();
 }
 
-void FortyFrame::Quick(wxCommandEvent& event) {
-    wxPrintf("event.id = %d\n", event.GetId());
-    m_canvas->Quick(event.GetId()-QUICK_1+1);
+void FortyFrame::QuickStep(wxCommandEvent& event) {
+    // wxPrintf("event.id = %d\n", event.GetId());
+    m_canvas->QuickStep(event.GetId()-QUICK_1+1);
+}
+
+#include "wx/numdlg.h"
+
+void FortyFrame::OnAskQuick(wxCommandEvent& WXUNUSED(event)) {
+
+    long res = wxGetNumberFromUser(
+        "설명이 들어갑니다.", // message
+        "Enter a number", // prompt
+        "제목이들어갑니다.", // title
+        0, // value
+        0, // min
+        100, // max
+        this
+    );
+
+    wxString msg;
+    if(res == -1) {
+        // Invalid number entered or dialog cancelled.
+    } else {
+        // wxPrintf("dialog.value = %lu", res);
+        m_canvas->QuickN(res);
+    }
 }
 
 //----------------------------------------------------------------------------

@@ -31,7 +31,8 @@ public:
     void Undo();
     void Redo();
     void Auto();
-    void Quick(int n);
+    void QuickStep(int step);
+    void QuickN(int n);
 
     ScoreFile* GetScoreFile() const { return m_scoreFile; }
     void UpdateScores();
