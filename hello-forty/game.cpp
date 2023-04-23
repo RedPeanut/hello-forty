@@ -165,7 +165,7 @@ void Game::Auto(wxDC& dc) {
     Choice(dc, m_bases[6], m_bases[6]->GetTopCard());		// 2C:B>F // 
     Choice(dc, m_bases[6], m_bases[6]->GetTopCard());		// 3C:B>F // 25
     Flip(dc);												// 6H:P>D // 
-    Choice(dc, m_discard, m_discard->GetTopCard());			// ? 6H:D>B // 
+    Choice(dc, m_discard, m_discard->GetTopCard());			// x 6H:D>B -> 55/5H:D>B -> 58/4H:D>B // 뒷단 카드들 때문에 줄일수 없음
     Flip(dc);												// 7C:P>D // 
     Flip(dc);												// 8C:P>D // 
     Flip(dc);												// 4D:P>D // 30
@@ -191,7 +191,7 @@ void Game::Auto(wxDC& dc) {
     Choice(dc, m_bases[5], m_bases[5]->GetTopCard());		// 6D:B>F // 50
     Choice(dc, m_bases[1], m_bases[1]->GetTopCard());		// 7D:B>F // 
     Choice(dc, m_discard, m_discard->GetTopCard());			// 8D:D>F // 
-    Choice(dc, m_bases[9], m_bases[9]->GetTopCard());		// ? 9D:B>F // 
+    Choice(dc, m_bases[9], m_bases[9]->GetTopCard());		// ?? 9D:B>F -> // 
     Flip(dc);												// 5H:P>D // 
     Choice(dc, m_discard, m_discard->GetTopCard());			// 5H:D>B // 55
     Flip(dc);												// 9C:P>D // 
@@ -205,7 +205,7 @@ void Game::Auto(wxDC& dc) {
     Flip(dc);												// 3S:P>D // 
     Choice(dc, m_discard, m_discard->GetTopCard());			// 3S:D>F // 65
     Flip(dc);												// 4S:P>D // 
-    Choice(dc, m_discard, m_discard->GetTopCard());			// ? 4S:D>F // 
+    Choice(dc, m_discard, m_discard->GetTopCard());			// 53/9D:B>F -> ? 4S:D>F // 
     Flip(dc);												// 4C:P>D // 
     Choice(dc, m_discard, m_discard->GetTopCard());			// 4C:D>F // 
     Flip(dc);												// 3S:P>D // 70
@@ -213,7 +213,7 @@ void Game::Auto(wxDC& dc) {
     Flip(dc);												// KS:P>D // 
     Flip(dc);												// 8D:P>D // 
     Flip(dc);												// 3D:P>D // 
-    Flip(dc);												// ? 9H:P>D // 75
+    Flip(dc);												// 9H:P>D // 75
     Choice(dc, m_discard, m_discard->GetTopCard());			// 9H:D>B // 
     Flip(dc);												// QD:P>D // 
     Flip(dc);												// 8S:P>D // 
@@ -234,7 +234,7 @@ void Game::Auto(wxDC& dc) {
     Choice(dc, m_bases[3], m_bases[3]->GetTopCard());		// 6S:B>F // 
     Choice(dc, m_bases[3], m_bases[3]->GetTopCard());		// 7S:B>F // 
     Choice(dc, m_bases[3], m_bases[3]->GetTopCard());		// 8S:B>F // 95
-    Choice(dc, m_bases[4], m_bases[4]->GetTopCard());		// ? 9S:B>F // 
+    Choice(dc, m_bases[4], m_bases[4]->GetTopCard());		// x 9S:B>F // 아닌듯 // 
     Choice(dc, m_bases[8], m_bases[8]->GetTopCard());		// 10S:B>F // 
     Choice(dc, m_bases[1], m_bases[1]->GetTopCard());		// JS:B>F // 
     Choice(dc, m_bases[8], m_bases[8]->GetTopCard());		// QS:B>F // 
@@ -292,7 +292,6 @@ void Game::Auto(wxDC& dc) {
     Choice(dc, m_discard, m_discard->GetTopCard());			// 10C:D>B // 
     Choice(dc, m_discard, m_discard->GetTopCard());			// JC:D>B // 
     Choice(dc, m_bases[5], m_bases[5]->GetTopCard());		// 10C:B>B // 
-    // Choice(dc, m_bases[1], m_bases[1]->GetTopCard());	//  // 
     Choice(dc, m_discard, m_discard->GetTopCard());			// JS:D>B // 
     Choice(dc, m_discard, m_discard->GetTopCard());			// 6D:D>B // 155
     Choice(dc, m_discard, m_discard->GetTopCard());			// JH:D>F // 
