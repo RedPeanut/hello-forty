@@ -102,6 +102,8 @@ public:
     void Choice(wxDC& dc, Pile* pile, Card* card, bool haveYouWon = true);
     void MouseMove(wxDC& dc, int mx, int my);
 
+    int GetInput() const { return m_input; }
+    void SetInput(int v) { m_input = v; }
     int GetNumWins() const { return m_numWins; }
     int GetNumGames() const { return m_numGames; }
     int GetScore() const { return m_currentScore + m_totalScore; }
@@ -123,6 +125,7 @@ private:
     int m_moveIndex; // current position in undo/redo buffer
     int m_redoIndex; // max move index available for redo
     int m_numMoves; // 
+    int m_input; // 
 
     // the various piles of cards
     Pack* m_pack;

@@ -560,6 +560,7 @@ void Game::Deal(bool resetPlay) {
             m_totalScore += m_currentScore;
         }
         m_inPlay = false;
+        m_input = 0;
     }
     m_currentScore = 0;
 }

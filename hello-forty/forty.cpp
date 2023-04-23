@@ -17,6 +17,7 @@
 #include "wx/wx.h"
 #endif
 
+#include "game.h"
 #include "canvas.h"
 #include "forty.h"
 #include "card.h"
@@ -291,9 +292,9 @@ void FortyFrame::OnAskQuick(wxCommandEvent& WXUNUSED(event)) {
         "설명이 들어갑니다.", // message
         "Enter a number", // prompt
         "제목이들어갑니다.", // title
-        0, // value
+        m_canvas->GetGame()->GetInput(), // value
         0, // min
-        100, // max
+        204, // max
         this
     );
 
@@ -303,6 +304,7 @@ void FortyFrame::OnAskQuick(wxCommandEvent& WXUNUSED(event)) {
     } else {
         // wxPrintf("dialog.value = %lu", res);
         m_canvas->QuickN(res);
+        m_canvas->GetGame()->SetInput(res);
     }
 }
 
