@@ -30,7 +30,6 @@ public:
     void NewGame();
     void Undo();
     void Redo();
-    void Auto();
     void QuickStep(int step);
     void QuickN(int n);
 
