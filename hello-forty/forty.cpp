@@ -279,11 +279,6 @@ void FortyFrame::ToggleCardSize(wxCommandEvent& event) {
     m_canvas->Refresh();
 }
 
-void FortyFrame::QuickStep(wxCommandEvent& event) {
-    // wxPrintf("event.id = %d\n", event.GetId());
-    m_canvas->QuickStep(event.GetId()-QUICK_1+1);
-}
-
 #include "wx/numdlg.h"
 
 void FortyFrame::OnAskQuick(wxCommandEvent& WXUNUSED(event)) {
@@ -306,6 +301,11 @@ void FortyFrame::OnAskQuick(wxCommandEvent& WXUNUSED(event)) {
         m_canvas->QuickN(res);
         m_canvas->GetGame()->SetInput(res);
     }
+}
+
+void FortyFrame::QuickStep(wxCommandEvent& event) {
+    // wxPrintf("event.id = %d\n", event.GetId());
+    m_canvas->QuickStep(event.GetId()-QUICK_1+1);
 }
 
 //----------------------------------------------------------------------------

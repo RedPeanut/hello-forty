@@ -51,8 +51,8 @@ public:
     void ToggleRightButtonUndo(wxCommandEvent& event);
     void ToggleHelpingHand(wxCommandEvent& event);
     void ToggleCardSize(wxCommandEvent& event);
-    void QuickStep(wxCommandEvent& event);
     void OnAskQuick(wxCommandEvent& event);
+    void QuickStep(wxCommandEvent& event);
 
     FortyCanvas* GetCanvas() { return m_canvas; }
 
