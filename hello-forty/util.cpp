@@ -1,3 +1,9 @@
+#include "wx/wxprec.h"
+
+#ifndef WX_PRECOMP
+#include "wx/wx.h"
+#endif
+
 #include "util.h"
 
 int Util::getValue(std::string& v) {
