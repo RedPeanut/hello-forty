@@ -42,6 +42,10 @@ wxBEGIN_EVENT_TABLE(FortyFrame, wxFrame)
     EVT_MENU(RIGHT_BUTTON_UNDO, FortyFrame::ToggleRightButtonUndo)
     EVT_MENU(HELPING_HAND, FortyFrame::ToggleHelpingHand)
     EVT_MENU(LARGE_CARDS, FortyFrame::ToggleCardSize)
+    EVT_MENU(QUICK_MODE_1, FortyFrame::Mode)
+    EVT_MENU(QUICK_MODE_2, FortyFrame::Mode)
+    EVT_MENU(QUICK_MODE_3, FortyFrame::Mode)
+    EVT_MENU(QUICK_MODE_4, FortyFrame::Mode)
     EVT_MENU(QUICK_N, FortyFrame::OnAskQuick)
     EVT_MENU(QUICK_1, FortyFrame::QuickStep)
     EVT_MENU(QUICK_2, FortyFrame::QuickStep)
@@ -171,6 +175,14 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
     helpMenu->Append(wxID_ABOUT, wxT("&About"), wxT("About Forty Thieves"));
 
     wxMenu* quickMenu = new wxMenu;
+
+    wxMenu* modeMenu = new wxMenu;
+    modeMenu->AppendRadioItem(QUICK_MODE_1, wxT("1"));
+    modeMenu->AppendRadioItem(QUICK_MODE_2, wxT("2"));
+    modeMenu->AppendRadioItem(QUICK_MODE_3, wxT("3"));
+    modeMenu->AppendRadioItem(QUICK_MODE_4, wxT("4"));
+    quickMenu->Append(QUICK_MODE, "m&Ode", modeMenu);
+
     quickMenu->Append(QUICK_N, wxT("Goto &N\tCtrl-N"));
     quickMenu->Append(QUICK_1, wxT("Step &1\tCtrl-1"));
     quickMenu->Append(QUICK_2, wxT("Step &2\tCtrl-2"));
@@ -279,6 +291,11 @@ void FortyFrame::ToggleCardSize(wxCommandEvent& event) {
     Card::SetScale(checked ? 1.3 : 1);
     m_canvas->LayoutGame();
     m_canvas->Refresh();
+}
+
+void FortyFrame::Mode(wxCommandEvent& event) {
+    int mode = event.GetId()-QUICK_MODE_1+1;
+    m_game->SetMode(mode);
 }
 
 #include "wx/numdlg.h"

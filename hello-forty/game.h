@@ -104,6 +104,8 @@ public:
 
     int GetInput() const { return m_input; }
     void SetInput(int v) { m_input = v; }
+    int GetMode() const { return m_mode; }
+    void SetMode(int v) { m_mode = v; }
     int GetNumWins() const { return m_numWins; }
     int GetNumGames() const { return m_numGames; }
     int GetScore() const { return m_currentScore + m_totalScore; }
@@ -124,13 +126,16 @@ private:
     int m_moveIndex; // current position in undo/redo buffer
     int m_redoIndex; // max move index available for redo
     int m_numMoves; // 
-    int m_input; // 
 
     // the various piles of cards
     Pack* m_pack;
     Discard* m_discard;
     Base* m_bases[10];
     Foundation* m_foundations[8];
+
+    // variable of automation
+    int m_mode = 1;
+    int m_input = 0;
 
     // variables to do with dragging cards
     Pile* m_srcPile;

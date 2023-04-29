@@ -52,6 +52,7 @@ public:
     void ToggleRightButtonUndo(wxCommandEvent& event);
     void ToggleHelpingHand(wxCommandEvent& event);
     void ToggleCardSize(wxCommandEvent& event);
+    void Mode(wxCommandEvent& event);
     void OnAskQuick(wxCommandEvent& event);
     void QuickStep(wxCommandEvent& event);
 
@@ -65,6 +66,13 @@ private:
         RIGHT_BUTTON_UNDO,
         HELPING_HAND,
         LARGE_CARDS,
+
+        QUICK_MODE,
+        QUICK_MODE_1,
+        QUICK_MODE_2,
+        QUICK_MODE_3,
+        QUICK_MODE_4,
+        
         QUICK_N,
         QUICK_1,
         QUICK_2,
