@@ -33,6 +33,7 @@ private:
 wxDECLARE_APP(FortyApp);
 
 class FortyCanvas;
+class Game;
 class FortyFrame: public wxFrame {
 public:
     FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos, const wxSize& size, bool largecards);
@@ -79,6 +80,7 @@ private:
 
     wxMenuBar* m_menuBar;
     FortyCanvas* m_canvas;
+    Game* m_game;
 };
 
 //----------------------------------------------------------------------------

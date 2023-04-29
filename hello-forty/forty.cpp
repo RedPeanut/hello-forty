@@ -196,6 +196,8 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
         Card::SetScale(1.3);
 
     m_canvas = new FortyCanvas(this, wxDefaultPosition, size);
+    m_game = m_canvas->GetGame();
+
 
     wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
     topsizer->Add(m_canvas, 1, wxEXPAND | wxALL, 0);
@@ -287,7 +289,7 @@ void FortyFrame::OnAskQuick(wxCommandEvent& WXUNUSED(event)) {
         "설명이 들어갑니다.", // message
         "Enter a number", // prompt
         "제목이들어갑니다.", // title
-        m_canvas->GetGame()->GetInput(), // value
+        m_game->GetInput(), // value
         0, // min
         204, // max
         this
@@ -299,7 +301,7 @@ void FortyFrame::OnAskQuick(wxCommandEvent& WXUNUSED(event)) {
     } else {
         // wxPrintf("dialog.value = %lu", res);
         m_canvas->QuickN(res);
-        m_canvas->GetGame()->SetInput(res);
+        m_game->SetInput(res);
     }
 }
 
