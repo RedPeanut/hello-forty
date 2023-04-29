@@ -171,7 +171,7 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
     helpMenu->Append(wxID_ABOUT, wxT("&About"), wxT("About Forty Thieves"));
 
     wxMenu* quickMenu = new wxMenu;
-    quickMenu->Append(QUICK_N, wxT("Go &N\tCtrl-N"));
+    quickMenu->Append(QUICK_N, wxT("Goto &N\tCtrl-N"));
     quickMenu->Append(QUICK_1, wxT("Step &1\tCtrl-1"));
     quickMenu->Append(QUICK_2, wxT("Step &2\tCtrl-2"));
     quickMenu->Append(QUICK_3, wxT("Step &3\tCtrl-3"));

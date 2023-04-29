@@ -29,11 +29,11 @@ wxBEGIN_EVENT_TABLE(FortyCanvas, wxScrolledWindow)
 wxEND_EVENT_TABLE()
 
 FortyCanvas::FortyCanvas(wxWindow* parent, const wxPoint& pos, const wxSize& size) :
-             wxScrolledWindow(parent, wxID_ANY, pos, size, 0),
-             m_helpingHand(true),
-             m_rightBtnUndo(true),
-             m_playerDialog(0),
-             m_leftBtnDown(false) {
+        wxScrolledWindow(parent, wxID_ANY, pos, size, 0),
+        m_helpingHand(true),
+        m_rightBtnUndo(true),
+        m_playerDialog(0),
+        m_leftBtnDown(false) {
     SetScrollbars(0, 0, 0, 0);
 
 #ifdef __WXGTK__
