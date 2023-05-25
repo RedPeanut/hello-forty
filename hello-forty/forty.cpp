@@ -209,7 +209,7 @@ FortyFrame::FortyFrame(wxFrame* frame, const wxString& title, const wxPoint& pos
 
     m_canvas = new FortyCanvas(this, wxDefaultPosition, size);
     m_game = m_canvas->GetGame();
-
+    GetMenuBar()->Check(QUICK_MODE_1+m_game->GetMode()-1, true);
 
     wxBoxSizer *topsizer = new wxBoxSizer(wxVERTICAL);
     topsizer->Add(m_canvas, 1, wxEXPAND | wxALL, 0);

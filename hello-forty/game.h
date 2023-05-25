@@ -90,6 +90,10 @@ public:
     void Undo(wxDC& dc); // Undo the last go
     void Redo(wxDC& dc); // Redo the last go
     void Auto(wxDC& dc); // Auto go
+    void Mode1(wxDC& dc);
+    void Mode2(wxDC& dc);
+    void Mode3(wxDC& dc);
+    void Mode4(wxDC& dc);
     void QuickStep(wxDC& dc, int step);
     void QuickN(wxDC& dc, int n);
     void Flip(wxDC& dc);
@@ -134,7 +138,7 @@ private:
     Foundation* m_foundations[8];
 
     // variable of automation
-    int m_mode = 1;
+    int m_mode = 2;
     int m_input = 0;
 
     // variables to do with dragging cards
