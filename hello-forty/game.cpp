@@ -160,7 +160,7 @@ void Game::QuickStep(wxDC& dc, int step) {
     Auto(dc);
     int numMoves = m_numMoves;
     for(int i = 0; i < numMoves; i++) Undo(dc);
-    int unit = numMoves/10; // 20
+    int unit = 20; //numMoves/10; // 20
     for(int i = 0; i < step*unit; i++) Redo(dc);
 }
 
