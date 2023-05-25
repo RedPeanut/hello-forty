@@ -206,10 +206,6 @@ void FortyCanvas::SetCursorStyle(int x, int y) {
 
 void FortyCanvas::NewGame() {
     m_game->Deal();
-    // wxClientDC dc(this);
-    // PrepareDC(dc);
-    // dc.SetFont(* m_font);
-    // m_game->Auto(dc);
     Refresh();
 }
 
